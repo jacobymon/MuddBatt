@@ -1,0 +1,11 @@
+{
+    "ioPairs": [], 
+    "name": "twoInput4",
+    "expected": [],
+    "correctFunct": '''def func(string, integer):
+	breh = integer + 1
+	return string[:1] + ' ' + str(breh)'''
+
+
+}
+  

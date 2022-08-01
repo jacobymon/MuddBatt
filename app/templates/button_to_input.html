@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to create an input box that takes in text</p>
+
+<button onclick="myFunction()">Try it</button>
+<script>
+function myFunction() {
+    //var y = document.getElementByID("guess").value;
+  var x = document.createElement("INPUT");
+  //x.setAttribute("type", "text");
+  //x.setAttribute("id", "guess")
+  x.type = "text";
+  x.id = "guess"
+
+  
+  document.body.appendChild(x);
+  //container.appendChild(x);
+  
+}
+
+</script>
+<button onclick="check()">submit</button>
+<p id="demo1"></p>
+<script>
+    function check() {
+        let y = document.getElementById("guess").value
+
+        //document.getElementById("demo1").innerHTML = "hello" + y + "jacoby";
+        let pattern = /correct horse battery alien/;
+        let result = pattern.test(y);
+        let text; 
+        if (result == true) {
+    text = "correct"
+    //document.getElementById("demo2").innerHTML = "congrats that is the right word!";
+    }
+    else
+    {
+        text = "incorrect"
+        //document.getElementById("demo1").innerHTML = "sorry that is not the right word";
+    }
+    document.getElementById("demo1").innerHTML = text;
+    }
+</script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html> 
+<html> 
+  
+<body> 
+  
+  <h4> 
+      Change the text of the text field  
+      ,and then click the button. 
+  </h4> 
+  
+  <label for="domTextElement">Name: </label>
+  <input type="text" id="domTextElement" > 
+  
+  <button type="button"  onclick="getValueInput()"> 
+      click me!! 
+  </button> 
+  
+  <p id="valueInput"></p> 
+
+  <script> 
+
+    const getValueInput = () =>{
+      let inputValue = document.getElementById("domTextElement").value; 
+      document.getElementById("valueInput").innerHTML = inputValue; 
+    }
+    
+  </script> 
+</body> 
+  
+</html> -->
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<test>
+    <test1>
+        <p>The string you chose was:</p>
+        <div><p id="a">{{text}}</p></div>
+    </test1>
+    <test2>
+        <form action="http://127.0.0.1:5000/int_to_string.html">
+            <input type="submit" value="switch"/>
+        </form>
+    </test2>
+    <test1>
+        <p>The unique integer is:</p>
+        <div><p id="demo">{{int}}</p></div>
+        <button onclick="myFunction()">Unique Binary Int</button>
+        <div><p id="test">...</p></div>
+        <button onclick="showSteps()">Show Steps</button>
+    </test1>
+</test>
+<script> //TODO: the external source version wasn't working. Google and fix.
+  function numToBaseB(N, B) {
+    if(N==0) {
+        return ''
+    }
+    else{
+        return numToBaseB(Math.floor(N/B), B) + String(N%B)
+    }
+}
+
+
+
+function numToBin(N) {
+    if (N==0){
+        return ''
+    }
+    let a = numToBaseB(Math.floor(N/2), 2) + String(N%2)
+    while (a.length != 8) {
+        if (a.length > 8) {
+            return "Error, the length of the base 10 int in binary is longer than 8."
+        }
+        let b = String(0) + a
+        a = b
+    }
+    return a
+}
+function dec2Bin(dec)
+{
+    if(dec >= 0) {
+        return dec.toString(2);
+    }
+    else {
+        /* Here you could represent the number in 2s compliment but this is not what 
+           JS uses as its not sure how many bits are in your number range. There are 
+           some suggestions https://stackoverflow.com/questions/10936600/javascript-decimal-to-binary-64-bit 
+        */
+        return (~dec).toString(2);
+    }
+}
+
+function myFunction() {
+    let y = document.getElementById("demo").innerHTML
+    let x = dec2Bin(parseInt(y))
+    while (x.length%8 != 0) {
+        let z = String(0) + x
+        x = z
+    }
+    document.getElementById("test").innerHTML = String(x)
+}
+function showSteps(){
+    let a = document.getElementById("a").innerHTML
+    document.write("Step 1: find the ascii value of each character in the string")
+    document.write("<br>")
+    for (let i=0; i<a.length; i++) {
+        document.write(a[i] + " " + "corresponds to the asccii value of" + " " + (a[i]).charCodeAt(0))
+        document.write("<br>")
+    }
+    let b = a.charAt(0)
+    let c = b.charCodeAt(0)
+    let d = numToBin(c)
+    document.write("<br>")
+    document.write("<br>")
+    document.write("<br>")
+    document.write("Step 2: convert each corresponding ascii value into binary. For example" + " " + a.charAt(0) + "'s" + " " + "binary ascii value would be" + " " + d)
+    document.write("<br>")
+    document.write("**Note that each binary conversion is being put into the full 8 bit value with leading zeroes in some cases")
+    document.write("<br>")
+    for (let x=0; x<a.length; x++){
+        let e = a[x].charCodeAt(0)
+        document.write(a[x] + "'s" + " " + "binary ascii value is " + numToBin(e))
+        document.write("<br>")
+        let f = numToBin(e) + numToBin(a[x+1].charCodeAt(0))
+
+    }
+    document.write("<br>")
+    document.write("<br>")
+    document.write("<br>")
+    document.write("Step3: concatenate the ascii values in order of the characters of the string")
+    document.write("<br>")
+    let g = document.getElementById("demo").innerHTML
+    let h = dec2Bin(parseInt(y))
+    while (h.length%8 != 0) {
+        let j = String(0) + h
+        h = j
+    // let y = document.getElementById("demo").innerHTML
+    // let x = dec2Bin(parseInt(y))
+    // while (x.length%8 != 0) {
+    //     let z = String(0) + x
+    //     x = z
+}
+    document.write(h)
+
+}
+
+
+  </script>     
+{% endblock %}

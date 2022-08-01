@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- link source for the ace library -->
+    <script src = "{{url_for('script1')}}"></script> 
+    <!-- link source for the python text highlighter library -->
+    <script src="{{url_for('script2')}}"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <b><center><div id="problemName"> <h1></h1></div></center></b> -->
+    <style type="text/css">
+        td {
+            padding: 0 15px;
+        }
+    </style>
+    <p>Code a function that,</p>
+    <div id="instructions">
+        <p></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <button id="hints"><p>HINTS!</p></button>
+    <div id="hint1">
+        <p>
+            
+        </p>
+    </div>
+    <!-- <br> -->
+    <div id="hint2">
+        <p>
+        </p>
+    </div>
+    <!-- <br> -->
+    <div id="hint3">
+        <p>
+        </p>
+    </div>
+    <!-- <div id="result"><p>The list that will be inputted will show here when "submit" is clicked.</p></div> -->
+    <div><p>Type in your code here</p></div>
+    <!-- <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe> -->
+    <form action="/banana9" method=post id="form">
+        <!-- <input type="text" name="test1" />
+        <textarea id="textbox" name="test2"></textarea>
+        <input type="text" name="test3" /> -->
+        <textarea rows="5" cols="60" type=text name=text id="text">
+        
+
+
+        </textarea>
+        <!-- <div id="text"></div> -->
+        <input type=submit value=Submit id="submit">
+        <div id="error"></div>
+    <!-- table that displays inputs & outpus and takes in data. -->
+    <table>
+
+        </tr>
+
+        
+      </table>
+      <table id = otherTable>
+          <tr>
+            <td>
+            <div>Inputs</div>
+            </td>
+            <td>
+                <div>Your outputs</div>
+                
+            </td>
+            <td>
+                <div>Expected outputs</div>
+            </td>
+        </tr>
+      <tbody id="myTable">
+            </tbody>
+        </table>
+    <!-- secret input box that holds the front end updated json data to the back end -->
+      <input id="json" name="json" type="hidden">
+    <!-- secret input box for the name of the problem. used to access the correct json data in the back end -->
+    <input id="problemName" name="problemName" type="hidden">
+
+</form> 
+
+<script
+    src = "{{url_for('script')}}">
+</script>
+
+
+
+ 
+<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+<script>
+    //code to allow my text box to use tab
+    document.getElementById('text').addEventListener('keydown', function(c) {
+if (c.key == 'Tab') {
+c.preventDefault();
+var start = this.selectionStart;
+var end = this.selectionEnd;
+
+// set textarea value to: text before caret + tab + text after caret
+this.value = this.value.substring(0, start) +
+  "\t" + this.value.substring(end);
+
+// put caret at right position again
+this.selectionStart =
+  this.selectionEnd = start + 1;
+}
+});
+
+
+
+
+
+
+
+fetch('http://127.0.0.1:5000/banana8', { //fetches from a page that has the muddBat1.json data on it
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    dataj = JSON.parse(data)
+    
+    document.getElementById("problemName").innerHTML = dataj.name //displays the name of the problem at the top of the page
+    console.log(dataj.in.length)
+    var table = document.getElementById("myTable")
+    
+    for(var i = 0; i < 5; i++){ //right now there are only 5 input boxes displayed, but in the future create an add input button some how.
+        id = "value" + String(i + 1)
+        console.log(id)
+        names = "name" + String(i + 1)
+        values = dataj.in[i]
+        StarterValues = dataj.originalIn[i]
+
+
+
+        console.log(values)
+
+
+        var inputCols = `<tr>
+                        <td>
+                            <input type=text name=${names} id= ${id} value="${StarterValues}">
+                        </td>
+                        </tr>
+                        `
+
+        table.innerHTML+=inputCols
+
+    }
+const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(updateJSON){
+
+
+var value1 = document.getElementById("value1").value //this block can be turned into a for loop
+var value2 = document.getElementById("value2").value
+var value3 = document.getElementById("value3").value
+var value4 = document.getElementById("value4").value
+var value5 = document.getElementById("value5").value
+console.log("This is value1: " + value1)
+
+if (value1 != "" && value2 != "" && value3 !="" && value4!="" && value5!="") {//can be turned into a for loop
+    while (dataj.in != ""){ //remove all the data originally in dataj.in
+        dataj.in.pop()
+    }
+// dataj.in.pop().pop().pop().pop().pop()
+dataj.in.push(value1, value2, value3, value4, value5) //add the new values! this can be turned into a for loop later
+    console.log(dataj)
+    console.log("The value for correctFunc is: " + dataj.correctFunc)
+    console.log("dataj is: ", dataj)
+    datas = JSON.stringify(dataj)
+    document.getElementById("json").value = datas
+}
+})
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+
+// figure out why this block is necessary
+const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+e.preventDefault(); //prevents the Submit button from submitting a form
+const formData= new FormData(mydata); //used to send the form data
+// fetch('http://127.0.0.1:5000/banana9', {
+//     method: "POST",
+//     body: formData //updates the url that we fetching so that we can get the data we want!
+// })
+// .then(function (response) {
+//     return response.text();
+// })
+// .then(function (data){
+
+//     // console.log(data)
+
+// })
+// .catch(function(error) {
+//     console.error(error);
+// })
+})
+
+// function that handles adding the column of userOutputs to the table.
+    const addYourOutputsCol = () => {
+        mydata.addEventListener('submit', function(e) {
+e.preventDefault(); //prevents the Submit button from submitting a form
+const formData= new FormData(mydata); //used to send the form data
+fetch('http://127.0.0.1:5000/banana9', { //fetch the JSON data from the page with the added in and out values
+    method: "POST",
+    body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    newJ = JSON.parse(data)
+    var table = document.getElementById("myTable")
+
+
+    //for loop to add the userOutputs column
+    for (const [i, row] of [...document.querySelectorAll('#myTable tr')].entries()) { //iterates through each row and adds a column
+        console.log(i)
+        
+        console.log(newJ.out[i])
+        userOutput = newJ.out[i] // stores the ith userOutput value in a variable using JSON 
+
+        
+        const test = document.createElement("div") //create a div element to add as the column
+        const newContent = document.createTextNode(userOutput) //sets a constant to store the userOutput value during each iteration
+        test.appendChild(newContent) //puts the corresponding userOutput as the content inside the div
+        const cell = document.createElement(i ? "td" : "td") //creates a new cell in the table
+        cell.appendChild(test) //appends the data from test into the newly created cell
+        console.log("test is: ", test)
+        console.log("the cell is: ", cell)
+        var colCount = document.getElementById('myTable').rows[i].cells.length
+        console.log("the number of cells in this row is", colCount)
+        row.appendChild(cell)// appends the cell with it's data into the row creating a column
+        
+        //deals with adjusting the table when the button is clicked multiple times
+        console.log("the Row is: ", row)
+        if(colCount>2){
+            cell.remove()
+            cell.remove()
+            cell.remove()
+            cell.remove()
+            console.log("The cell before is: ", cell)
+            cell.appendChild(test)
+            // console.log("the deleted cell will be", row.deleteCell())
+            row.deleteCell(1)
+            row.deleteCell(1)
+            row.deleteCell(1)
+            console.log("the Row is: ", row)
+            row.appendChild(cell)
+
+            console.log("The cell after is: ", cell)
+            console.log(myTable)
+        }
+
+        
+        
+
+    };
+
+    //add the expected outputs column
+    for (const [i, row] of [...document.querySelectorAll('#myTable tr')].entries()) { //iterates through each row and adds a column
+        console.log(i)
+        
+        expected = newJ.expected[i]
+        console.log("expected values: ", expected)
+
+        
+        const test = document.createElement("div") //create a div element to add as the column
+        const newContent = document.createTextNode(expected) //sets a constant to store the userOutput value during each iteration
+        test.appendChild(newContent) //puts the corresponding userOutput as the content inside the div
+        const cell = document.createElement(i ? "td" : "td") //creates a new cell in the table
+        cell.appendChild(test) //appends the data from test into the newly created cell
+        console.log("test is: ", test)
+        console.log("the cell is: ", cell)
+        var colCount = document.getElementById('myTable').rows[i].cells.length
+        console.log("the number of cells in this row is", colCount)
+        row.appendChild(cell)// appends the cell with it's data into the row creating a column
+
+    };
+
+    //add the checking column
+    for (const [i, row] of [...document.querySelectorAll('#myTable tr')].entries()) { //iterates through each row and adds a column
+
+        
+        const test = document.createElement("div") //create a div element to add as the column
+        test.id = "check" + String(i + 1)
+        console.log("the Check id is: ", test.id)
+        const cell = document.createElement(i ? "td" : "td") //creates a new cell in the table
+        cell.appendChild(test) //appends the data from test into the newly created cell
+        row.appendChild(cell)// appends the cell with it's data into the row creating a column
+
+    };
+
+    for (var j = 0, newRow; newRow = myTable.rows[j]; j++) {
+        console.log("test1: ", newRow.cells[2] )
+        currentCheckId= "check" + String(j + 1)
+        console.log("One is : ", newRow.cells[1].innerText)
+        console.log("two is: ", newRow.cells[2].innerText)
+        console.log(newRow.cells[1].innerText == newRow.cells[2].innerText)
+        if(newRow.cells[1].innerText == newRow.cells[2].innerText) {
+            document.getElementById(currentCheckId).innerHTML = "Correct"
+        }else{
+            document.getElementById(currentCheckId).innerHTML = "Incorrect"
+        }
+
+            for (var k = 0, col; col = newRow.cells[k]; k++){
+                console.log("test: ", newRow.cells[k])
+            }
+        }
+})
+.catch(function(error) {
+    console.error(error);
+})
+}, {once : true})
+    
+    }
+    
+// mydata.addEventListener('submit', addColumn)
+var submitButton = document.getElementById('submit')
+// if ()
+submitButton.onclick = addYourOutputsCol //perform addColumn one the submit button is clicked
+
+
+</script> -->
+    
+</body>
+</html>
+{% endblock %}

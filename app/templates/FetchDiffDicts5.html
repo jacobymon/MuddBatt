@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    document.getElementById("result").innerHTML = data
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+
+function nico(){
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    dataj = JSON.parse(data)
+    console.log(dataj)
+    dataS = JSON.stringify(dataj)
+    console.log(dataS)
+    document.getElementById("json").value = dataS
+})
+.catch(function(error) {
+    console.error(error);
+})
+    
+}
+nico()
+    </script>
+</head>
+<body>
+
+    <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
+    <form action="/fetchDiff3" method="post" target="dummyframe" id="form"> 
+    <input value="Update The Output Values From The Back End" type="submit">
+    <input id="backend" name="back">
+    <input id="json" name="json" type="hidden">
+    </form>
+    <div>The original JSON is: </div>
+    <div id="result"></div>
+    <br>
+    <br>
+    <br>
+    <div>The following updated json is:</div>
+    <div id="resultBack"></div>
+
+    <script> 
+    // this javascript has to be in the body in order for the document.getElementById('form'); line to work. Otherwise it reads null
+        const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+e.preventDefault(); //prevents the Submit button from submitting a form
+const formData= new FormData(mydata); //used to send the form data
+fetch('http://127.0.0.1:5000/fetchDiff3', {
+    method: "POST",
+    body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    document.getElementById("resultBack").innerHTML = data
+})
+.catch(function(error) {
+    console.error(error);
+})
+});
+    </script>
+
+</body>
+</html>

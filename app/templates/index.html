@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    
+    <h1>Hi, Welcome to an Example Flask App!</h1>
+    <div><p>Click below to check our a pig latin translator
+        a picture pixel inverter!</p></div>
+    
+    <div>ace example <a href="/aceExample">Translate now!</a></div>
+    <div>Pig Latin Translator: <a href="/text">Translate now!</a></div>
+    
+    <div>Image Pixel Inverter: <a href="/image">Invert now!</a></div>
+    <div>An <a href="https://xkcd.com/1625/">xkcd</a> Substitutor: <a href="/subs">Substitute now!</a></div>
+    <div>Breh Latin Translator: <a href="/breh">Translate now!</a></div>
+    <div> 2x2 Determinant Calculator: <a href="/determinant">Calculate now!</a></div>
+    <div> Dynamically Add a Column to a Table: <a href="/dynamicAddCol">Click to Try!</a></div>
+    <div> Table Sandbox: <a href="/tableSandbox">Click to Try!</a></div>
+    <div> For loop quiz: <a href="/loopquiz">Play now!</a></div>
+    <div> Front End button <a href="/Front-button.html">Click to Try!</a></div>
+    <div> button to input example <a href="/button_to_input.html">Click to Try!</a></div>
+    <div> String To Int <a href="/string_to_int.html">Click to Try!</a></div>
+    <div> Int To String <a href="/int_to_string.html">Click to Try!</a></div>
+    <div> Test<a href="/test.html">Click to Try!</a></div>
+    <div> Js and Fetch examples<a href="/jsAndFetchEx.html">Click to Try!</a></div>
+    <div> Async Java Ex<a href="/asyncPract">Click to Try!</a></div>
+    <div> Fetch Different Dicts<a href="/fetchDiff">Click to Try!</a></div>
+    <div> Fetch Different Dicts<a href="/fetchDiff1">Click to Try!</a></div>
+    <div> Update JSON From Front End<a href="/fetchDiff4">Click to Try!</a></div>
+    <div> Update JSON From Back End<a href="/fetchDiff5">Click to Try!</a></div>
+    <div> Update JSON From Front Then Back<a href="/fetchDiff2">Click to Try!</a></div>
+    <div> Mudd Bat<a href="/mango">Click to Try!</a></div>
+    <div> Mudd Bat 2<a href="/banana">Click to Try!</a></div>
+    <div> Mudd Bat 3<a href="/banana3">Click to Try!</a></div>
+    <div> Mudd Bat 4<a href="/banana5">Click to Try!</a></div>
+    <div> Mudd Bat 5<a href="/banana7">Click to Try!</a></div>
+    <div>Create Your Own Problem <a href="/banana11">Click to Try!</a></div>
+
+
+    <form action="/" method=post id="form" name="form" target="dummyframe">
+        <input type=submit value="TwoInput" id="btnSubmit" name="btnSubmit">
+        <br>
+        <input type=submit value="xPlusOne" id="btnSubmit" name="btnSubmit">
+        <!-- <input id="test" name="test"> -->
+    <!-- <div> TwoInput <button onclick="TwoInput();">Click to Try!</button></div> //turn into a submit button
+    <div> x + 1 <button onclick="TwoInput();">Click to Try!</button></div>  -->
+    
+        <input id="data" name="data" type="hidden">        
+    </form>
+    <!-- <div>{{submit}}</div> -->
+    <script>
+    console.log("the name of problem is: ", document.getElementById('btnSubmit').value)
+
+
+let ConvertStringToHTML = function (str) {
+   let parser = new DOMParser();
+   let doc = parser.parseFromString(str, 'text/html');
+   return doc.body;
+};
+
+// uncomment these to help display what is being fetched on the console of the first page (this way you don't have to hit the button)
+fetch('http://127.0.0.1:5000/tableSandbox', { //fetches from a page that has the muddBat1.json data on it
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    HTMLData = ConvertStringToHTML(data)
+    console.log("the HTMLData is: ", HTMLData)
+    document.getElementById("data").value = data
+//     document.form.submit()
+
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+document.getElementById("form").addEventListener("submit", function(muddBat){
+    // if(!isValid){
+    //     muddBat.preventDefault()
+    // }
+    fetch('http://127.0.0.1:5000/tableSandbox', { //fetches from a page that has the muddBat1.json data on it
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(" the data is: ", data)
+    HTMLData = ConvertStringToHTML(data)
+    console.log(HTMLData)
+    document.getElementById("data").value = data
+    // document.form.submit()
+
+
+})
+.catch(function(error) {
+    console.error(error);
+})
+})
+
+//     function TwoInput() {
+    
+// }        
+
+    </script>
+
+{% endblock %}

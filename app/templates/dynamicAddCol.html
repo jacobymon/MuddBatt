@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="tableone">
+        <tr>
+          <th><input type="text" value="test 1" /></th>
+          <td><div>asdf</div></td>
+        </tr>
+        <tr>
+          <td><input type="text" value="test 2" /></td>
+        </tr>
+      </table>
+      
+      <button type="button" id="buttonID">add column</button>
+      <script>
+
+          
+          const addColumn = () => {
+  for (const [i, row] of [...document.querySelectorAll('#tableone tr')].entries()) {
+    const input = document.createElement("input")
+    input.setAttribute('type', 'text')
+    const test = document.createElement("div")
+    const newContent = document.createTextNode("Hello")
+    test.appendChild(newContent)
+    const cell = document.createElement(i ? "td" : "td")
+    cell.appendChild(test)
+    row.appendChild(cell)
+  };
+}
+
+document.getElementById('buttonID').onclick = addColumn
+      </script>
+</body>
+</html>

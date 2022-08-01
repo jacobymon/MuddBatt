@@ -1,0 +1,18 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - ExampleApp</title>
+      {% else %}
+      <title>Welcome to ExampleApp</title>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'aceStyle.css')}}">
+      <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'aceExample.css')}}"> -->
+      <!-- <link rel="stylesheet" type="text/css" href="/Users/jacobylockman/Desktop/week2_spr22/FlaskAppStarter/app/static/aceExample.css"> -->
+
+      {% endif %}
+    </head>
+    <body>
+        <div>ExampleApp: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

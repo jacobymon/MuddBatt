@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+    <head>
+    <style>
+    a:link, a:visited {
+      background-color: #36f449;
+      color: white;
+      padding: 14px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    a:hover, a:active {
+      background-color: green;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h1 style="color:green">Correct! That is a for loop!</h1>
+    
+    <a href="http://127.0.0.1:5000/loopquiz" target="_blank">Try Again</a>
+    
+    </body>
+    </html>
+{% endblock %}

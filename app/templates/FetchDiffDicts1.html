@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="delly();">Add the data into the "in" key value</button>
+    <input id="text" name="text">
+    <br>
+    <div>The original JSON is: </div>
+    <div id="result"></div>
+    <br>
+    <br>
+    <br>
+    <div>The updated Json is:</div>
+    <div id="newJSON"></div>
+<script>
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    document.getElementById("result").innerHTML = data
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+
+    function delly(){
+        var j = document.getElementById("text").value;
+        console.log(j)
+        
+        
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    // var input = j
+    // var myValue = 
+    console.log(data)
+    // document.getElementById("result").innerHTML = data
+    test = JSON.parse(data)
+    // console.log(test.name)
+    test.in.push(j)
+    console.log(test.ioPairs)
+    console.log(test)
+    test = JSON.stringify(test)
+    document.getElementById("newJSON").innerHTML = test
+})
+.catch(function(error) {
+    console.error(error);
+})
+    
+}
+    </script>
+</body>
+</html>

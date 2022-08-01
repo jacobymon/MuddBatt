@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.mystyle {
+  width: 100%;
+  padding: 25px;	
+  background-color: coral;
+  color: white;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+
+<p>Clicking on the button will change the style of the text.</p>
+
+<button onclick="myFunction()">Click here</button>
+
+<div id="myDIV">
+This is a front end button.
+</div>
+
+<script>
+function myFunction() {
+   var element = document.getElementById("myDIV");
+   element.classList.toggle("mystyle");
+}
+</script>
+
+</body>
+</html>
+{% endblock %}

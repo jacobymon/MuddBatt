@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>2x2 determinant calculator!</h1>
+<div><p>Type in values to the matrix</p></div>
+<div id="2by2">
+<form method = post> 
+<table>
+    <tr>
+      <td> 
+          <input type=number name=one_one>
+        </td>
+      <td>
+          <input type=number name=one_two>
+    </td>
+    </tr>
+        <td>
+            <input type=number name=two_one>
+        </td>
+        <td>
+          <input type=number name=two_two>
+    </td>
+    </tr>
+  </table>
+  <input type=submit value=Submit>
+</form>  
+</div>
+<button onclick ="add_row_col">click me </button>
+
+<div id="3by3" onclick="add_row_col()" src="3by3.html">
+
+<script>
+function add_row_col() {
+  var two_two = document.getElementById("2by2");
+  if (two_two.src.match("determinant.html")) {
+    two_two.src = "3by3.html";
+  }
+}
+</script>
+
+</body>
+</html>
+{% endblock %}

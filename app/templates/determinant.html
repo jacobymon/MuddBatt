@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>2x2 determinant calculator!</h1>
+<div><p>Type in values to the matrix</p></div>
+<form>
+<table>
+    <tr>
+      <td> 
+
+          <input type=number name=one_one>
+        </td>
+      <td>
+          <input type=number name=one_two>
+    </td>
+    </tr>
+        <td>
+            <input type=number name=two_one>
+        </td>
+        <td>
+          <input type=number name=two_two>
+    </td>
+    </tr>
+  </table>
+  <input type=submit value=Submit>
+</form>  
+{% endblock %}

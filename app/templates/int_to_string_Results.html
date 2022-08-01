@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<test>
+    <test1>
+        <p>The int you chose was:</p>
+        <div><p>{{num}}</p></div>
+    </test1>    
+    <test2>
+        <form action="http://127.0.0.1:5000/string_to_int.html">
+            <input type="submit" value="switch"/>
+        </form>
+    </test2>
+    <test1>
+        <p>The corresponding program is:</p>
+        <div><p>{{s}}</p></div>
+    </test1>
+</test>
+{% endblock %}

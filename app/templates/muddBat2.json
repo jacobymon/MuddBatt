@@ -1,0 +1,31 @@
+{
+   "TwoInput": { "in": [],
+    "originalIn": ["('adsfa', 1)", "('42', 42)", "('k3k2j3', 5)", "('king', -3)", "('hello', 111)"],
+    "out": [], 
+    "name": "twoInput4",
+    "expected": [],
+    "correctFunc": "def correctfunc(string, integer):\n    breh = integer + 1\n    return string[:1] + ' ' + str(breh)",
+    "author": [],
+    "instructions" : "takes in a string and an int. It returns a string with the first letter of the given string, a space, and adds one to the int",
+    "hints": ["func('hello world', 41) → h 42", "func('Harvey Mudd' 12) → H 13", "func('1234' 1234) → 1 1235"],
+    "funcDef": "def func(string, integer):", 
+    "error": []    
+    },
+
+
+    "xPlusOne": { "in": [],
+        "originalIn": ["(1)", "(-1)", "(200)", "(41)", "(900)"],
+        "out": [], 
+        "name": "x + 1",
+        "expected": [],
+        "correctFunc": "def correctf(x):\n    return x + 1",
+        "author": [],
+        "instructions": "takes in an integer x and adds one to x",
+        "hints" : [],
+        "funcDef": "def f(x):", 
+        "error": []
+}
+    
+
+
+}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+if the fetch still doesn't work, try sourcing the js file
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    src = "{{url_for('script')}}">
+</script>
+</head>
+<body>
+    <form  action="{{url_for('index')}}" method="post">
+    
+    </form>
+    <div id="container"><p>{{data}}</p></div>
+    <div id="main"></div>
+    <script>
+        var render = function (template, node) {
+            node.innerHTML = template;
+        }
+        const htmlStr = document.getElementById('container');
+        console.log("htmlStr is: ", htmlStr)
+        console.log("html.texContent is: ", htmlStr.textContent)
+        console.log("htmlStr.innerText is: ", htmlStr.innerText)
+        const parser = new DOMParser();
+        const htmlData = parser.parseFromString(htmlStr, "text/html");
+        console.log("htmlData is: ", htmlData)
+        render(htmlStr.textContent, document.querySelector('#container'))
+        var template = '<div id="js"><div> <script>document.getElementById.innerHTML= "this worked"<script>'
+
+        render(template, document.querySelector('#main'))
+
+        // render(template, document.querySelector('#main'))
+    </script>
+</body>
+</html>
+{% endblock %}

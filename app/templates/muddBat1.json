@@ -1,0 +1,10 @@
+{
+    "in": [],
+    "originalIn": ["('adsfa', 1)", "('42', 42)", "('k3k2j3', 5)", "('king', -3)", "('hello', 111)"],
+    "out": [], 
+    "name": "twoInput4",
+    "expected": [],
+    "correctFunc": "def correctfunc(string, integer):\n    breh = integer + 1\n    return string[:1] + ' ' + str(breh)",
+    "author": []
+}
+  

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <b><center><div id="problemName"> <h1></h1></div></center></b>
+    <style type="text/css">
+        td {
+            padding: 0 15px;
+        }
+    </style>
+    <p>Code a function that,</p>
+    <p>takes in a string and an int. It returns a string with the first letter of the given string, a space, and adds one to the int
+    </p>
+    <br>
+    <br>
+    <br>
+    <p>HINTS!</p>
+    <p>
+        func('hello world', 41)) → h 42
+    </p>
+    <!-- <br> -->
+    <p>
+        func('Harvey Mudd' 12) → H 13
+    </p>
+    <!-- <br> -->
+    <p>
+        func('1234' 1234) → 1 1235
+    </p>
+    <!-- <div id="result"><p>The list that will be inputted will show here when "submit" is clicked.</p></div> -->
+    <div><p>Type in your code here</p></div>
+    <!-- <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe> -->
+    <form action="/banana9" method=post id="form" target="dummyframe">
+        <!-- <input type="text" name="test1" />
+        <textarea id="textbox" name="test2"></textarea>
+        <input type="text" name="test3" /> -->
+        <textarea rows="5" cols="60" type=text name=text id="text">
+def func(string, integer):
+
+        </textarea>
+        <input type=submit value=Submit>
+    <!-- table that displays inputs & outpus and takes in data. -->
+    <table>
+        
+        <tr>
+            <td>
+            <div>Inputs</div>
+            </td>
+            <td>
+                <div>Your outputs</div>
+                
+            </td>
+            <td>
+                <div>Expected outputs</div>
+            </td>
+        </tr>
+         
+                
+        <tr>
+          <td> 
+              <input type=text name=one1 value="('adsfa', 1)" id="value1">
+            </td>
+            
+            <!-- <td> 
+                <div id="result1"></div>
+              </td> -->
+              <!-- <td> 
+                <center><div id="expected1" value="a 2"></div></center>
+              </td> -->
+              <!-- <td> 
+                <div id="check1"></div>
+              </td> -->
+            
+            <td id="myTable">
+            </td>
+
+        </tr>
+       
+            <td>
+                <input type=text name=two1 value="('42', 42)" id="value2">
+            </td>
+            
+            <!-- <td>
+                 <div id="result2"></div>
+            </td> -->
+            <!-- <td> 
+                <center><div id="expected2" value="4 43"></div></center>
+              </td> -->
+            <!-- <td> 
+                <div id="check2"></div>
+              </td> -->
+        </tr> 
+        <tr>
+            <td>
+                <input type=text name=three1 value="('Jacoby', -3)" id="value3">
+            </td>
+            
+            <!-- <td>
+                 <div id="result3"></div>
+            </td> -->
+            <!-- <td> 
+                <center><div id="expected3" value="J -2"></div></center>
+              </td> -->
+            <!-- <td> 
+                <div id="check3"></div>
+              </td> -->
+        </tr>
+        <tr>
+            <td>
+                <input type=text name=four1 value="('King', 4.5)" id="value4">
+            </td>
+            
+            <!-- <td>
+                <div id="result4"></div>
+           </td> -->
+           <!-- <td> 
+                <center><div id="expected4" value="K 5.5"></div></center>
+              </td> -->
+           <!-- <td> 
+            <div id="check4"></div>
+          </td> -->
+        </tr>
+        <tr>
+            <td>
+                <input type=text name=five1 value="('j2j31', 5)" id="value5">
+            </td>
+            
+            <!-- <td>
+                <div id="result5"></div>
+           </td> -->
+           <!-- <td> 
+                <center><div id="expected5" value="j 6"></div></center>
+              </td> -->
+           <!-- <td> 
+            <div id="check5"></div>
+          </td> -->
+          
+          
+        </tr>
+
+        
+      </table>
+
+      <input id="json" name="json" >
+</form> 
+
+<!-- <table>
+    <tr>
+    <td>
+        Inputs
+    </td>
+    <td>
+        Your Outputs
+    </td>
+    <td>
+        Expected Outputs
+    </td>
+    </tr>
+    <td> 
+        <input type=text name=one1 value="('adsfa', 1)" id="value1">
+      </td>
+    <tbody id="myTable">
+
+    </tbody>
+</table> -->
+
+ 
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+<script>
+    //code to allow my text box to use tab
+    document.getElementById('text').addEventListener('keydown', function(c) {
+if (c.key == 'Tab') {
+c.preventDefault();
+var start = this.selectionStart;
+var end = this.selectionEnd;
+
+// set textarea value to: text before caret + tab + text after caret
+this.value = this.value.substring(0, start) +
+  "\t" + this.value.substring(end);
+
+// put caret at right position again
+this.selectionStart =
+  this.selectionEnd = start + 1;
+}
+});
+
+//display of the expected outputs
+// document.getElementById("expected1").innerHTML = document.getElementById("expected1").getAttribute('value') //divs don't have a value property but we can force one onto it with .getAttribute()
+
+// document.getElementById("expected2").innerHTML = document.getElementById("expected2").getAttribute('value') 
+
+// document.getElementById("expected3").innerHTML = document.getElementById("expected3").getAttribute('value')
+
+// document.getElementById("expected4").innerHTML = document.getElementById("expected4").getAttribute('value')
+
+// document.getElementById("expected5").innerHTML = document.getElementById("expected5").getAttribute('value')
+
+
+var value1 = document.getElementById("value1").value
+var value2 = document.getElementById("value2").value
+var value3 = document.getElementById("value3").value
+var value4 = document.getElementById("value4").value
+var value5 = document.getElementById("value5").value
+
+
+
+fetch('http://127.0.0.1:5000/banana8', { //fetches from a page that has the muddBat1.json data on it
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    dataj = JSON.parse(data)
+    dataj.in.push(value1, value2, value3, value4, value5)
+    console.log(dataj)
+    console.log("The value for correctFunc is: " + dataj.correctFunc)
+    console.log("dataj is: ", dataj)
+    datas = JSON.stringify(dataj)
+    document.getElementById("json").value = datas
+    document.getElementById("problemName").innerHTML = dataj.name //displays the name of the problem at the top of the page
+
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+
+const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+e.preventDefault(); //prevents the Submit button from submitting a form
+const formData= new FormData(mydata); //used to send the form data
+fetch('http://127.0.0.1:5000/banana9', {
+    method: "POST",
+    body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    // fixedData = ast.literal_eval(data)
+    // console.log(fixedData)
+    newJ = JSON.parse(data)
+    var table = document.getElementById("myTable")
+    
+    for(var i = 0; i < newJ.out.length; i++){
+        console.log(newJ.out[i])
+        userOutput = newJ.out[i]
+        var row = `<center> ${userOutput}</center>`
+        table.innerHTML += row
+
+    }
+
+//     // test = JSON.parse(data)
+//     // console.log(test.name)
+//     // document.getElementById("problemName").innerHTML = test.name
+//     // var table = document.getElementById("myTable")
+    
+//     // for(var i = 0; i < test.ioPairs.length; i++){
+//     //     y = Object.keys(test.ioPairs[i])[0]
+//     //     console.log(y)
+//     //     z = test.ioPairs[i][y]
+//     //     console.log(z)
+//     //     console.log(i)
+//     //     l = test.expected[i]
+//     //     if (z == l){
+//     //         check = "Correct"
+//     //     }
+//     //     else {check = "Incorrect"}
+//     //     var row = `<tr> 
+//     //                 <td><center>${y}</center></td>
+//     //                 <td><center>${z}</center></td>
+//     //                 <td><center>${l}</center></td>
+//     //                 <td><center>${check}</center></td>
+//     //                 </tr>
+//     //                 `
+//     //     table.innerHTML += row
+//     // }
+})
+.catch(function(error) {
+    console.error(error);
+})
+})
+</script>
+    
+</body>
+</html>

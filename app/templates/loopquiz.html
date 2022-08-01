@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Click on the for loop on the image:</h1>
+
+<img src="maxresdefault.jpeg" alt="loop quiz" usemap="#quizmap" width="600" height="379">
+
+<map name="quizmap">
+  <area shape="rect" coords="34,44,175,170" alt="Incorrect" href="http://127.0.0.1:5000/text">
+  <area shape="rect" coords="34,185,200,250" alt="Correct" href="http://127.0.0.1:5000/correct.html">
+</map>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,245 @@
+<!-- MUDDBAT3 -->
+
+<!-- uses a more complex json file to fetch from than twoInput, but this json data can only be accessed once the submit button is created
+since the json is created as soon as the submit button is pressed. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div> <h1></h1></div>
+    <style type="text/css">
+        td {
+            padding: 0 15px;
+        }
+    </style>
+    <p>Code a function that,</p>
+    <p>takes in a string and an int. It returns a string with the first letter of the given string, a space, and adds one to the int
+    </p>
+    <br>
+    <br>
+    <br>
+    <p>HINTS!</p>
+    <p>
+        func('hello world', 41)) → h 42
+    </p>
+    <!-- <br> -->
+    <p>
+        func('Harvey Mudd' 12) → H 13
+    </p>
+    <!-- <br> -->
+    <p>
+        func('1234' 1234) → 1 1235
+    </p>
+    <!-- <div id="result"><p>The list that will be inputted will show here when "submit" is clicked.</p></div> -->
+    <div><p>Type in your code here</p></div>
+    <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
+    <form action="/banana4" method=post id="form" target="dummyframe">
+        <!-- <input type="text" name="test1" />
+        <textarea id="textbox" name="test2"></textarea>
+        <input type="text" name="test3" /> -->
+        <textarea rows="5" cols="60" type=text name=text id="text">
+def func(string, integer):
+
+        </textarea>
+        <input type=submit value=Submit>
+    <!-- table that displays inputs & outpus and takes in data. -->
+    <table>
+        <tr>
+            <td>
+            <div>Inputs adsf</div>
+            </td>
+            <td>
+                <div>Your outputs</div>
+            </td>
+            <td>
+                <div>Expected outputs</div>
+            </td>
+        </tr>
+        
+        <tr>
+          <td> 
+              <input type=text name=one1 value="('adsfa', 1)" id="value1">
+            </td>
+            
+            <td> 
+                <div id="result1"></div>
+              </td>
+              <td> 
+                <center><div id="expected1" value="a 2"></div></center>
+              </td>
+              <td> 
+                <div id="check1"></div>
+              </td>
+        </tr>
+            <td>
+                <input type=text name=two1 value="('42', 42)" id="value2">
+            </td>
+            
+            <td>
+                 <div id="result2"></div>
+            </td>
+            <td> 
+                <center><div id="expected2" value="4 43"></div></center>
+              </td>
+            <td> 
+                <div id="check2"></div>
+              </td>
+        </tr>
+        <tr>
+            <td>
+                <input type=text name=three1 value="('Jacoby', -3)" id="value3">
+            </td>
+            
+            <td>
+                 <div id="result3"></div>
+            </td>
+            <td> 
+                <center><div id="expected3" value="J -2"></div></center>
+              </td>
+            <td> 
+                <div id="check3"></div>
+              </td>
+        </tr>
+        <tr>
+            <td>
+                <input type=text name=four1 value="('King', 4.5)" id="value4">
+            </td>
+            
+            <td>
+                <div id="result4"></div>
+           </td>
+           <td> 
+                <center><div id="expected4" value="K 5.5"></div></center>
+              </td>
+           <td> 
+            <div id="check4"></div>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                <input type=text name=five1 value="('j2j31', 5)" id="value5">
+            </td>
+            
+            <td>
+                <div id="result5"></div>
+           </td>
+           <td> 
+                <center><div id="expected5" value="j 6"></div></center>
+              </td>
+           <td> 
+            <div id="check5"></div>
+          </td>
+        </tr>
+      </table>
+</form> 
+<div id="people"></div>
+<script>
+    //code to allow my text box to use tab
+    document.getElementById('text').addEventListener('keydown', function(c) {
+if (c.key == 'Tab') {
+c.preventDefault();
+var start = this.selectionStart;
+var end = this.selectionEnd;
+
+// set textarea value to: text before caret + tab + text after caret
+this.value = this.value.substring(0, start) +
+  "\t" + this.value.substring(end);
+
+// put caret at right position again
+this.selectionStart =
+  this.selectionEnd = start + 1;
+}
+});
+
+//display of the expected outputs
+document.getElementById("expected1").innerHTML = document.getElementById("expected1").getAttribute('value') //divs don't have a value property but we can force one onto it with .getAttribute()
+
+document.getElementById("expected2").innerHTML = document.getElementById("expected2").getAttribute('value') 
+
+document.getElementById("expected3").innerHTML = document.getElementById("expected3").getAttribute('value')
+
+document.getElementById("expected4").innerHTML = document.getElementById("expected4").getAttribute('value')
+
+document.getElementById("expected5").innerHTML = document.getElementById("expected5").getAttribute('value')
+
+
+
+// fetch mechanism to get the data from the page that we submitted the data to.
+    const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+e.preventDefault(); //prevents the Submit button from submitting a form
+const formData= new FormData(mydata); //used to send the form data
+fetch('http://127.0.0.1:5000/banana4', {
+    method: "POST",
+    body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+
+    console.log(data) //displays the JSON data onto the console
+    test = JSON.parse(data) //converts the data from a string into a javaScript object (so we can do key-value operations)
+
+    //accesses the Input values, which are the keys in each listed dict, and assigns variable names to them
+    input1 = Object.keys(test.ioPairs[0])[0]
+    input2 = Object.keys(test.ioPairs[1])[0]
+    input3 = Object.keys(test.ioPairs[2])[0]
+    input4 = Object.keys(test.ioPairs[3])[0]
+    input5 = Object.keys(test.ioPairs[4])[0]
+
+    //accesses the output from the user's function, which are the values of the dict
+    yourOutput1 = test.ioPairs[0][input1]
+    yourOutput2 = test.ioPairs[1][input2]
+    yourOutput3 = test.ioPairs[2][input3]
+    yourOutput4 = test.ioPairs[3][input4]
+    yourOutput5 = test.ioPairs[4][input5]
+    //displays these corresponding values to the page via the html table
+    document.getElementById("result1").innerHTML = yourOutput1
+    document.getElementById("result2").innerHTML = yourOutput2
+    document.getElementById("result3").innerHTML = yourOutput3
+    document.getElementById("result4").innerHTML = yourOutput4
+    document.getElementById("result5").innerHTML = yourOutput5
+
+
+    //system to check if the user's outputs are correct
+    if (yourOutput1 == document.getElementById("expected1").getAttribute('value')) {
+        document.getElementById("check1").innerHTML = "Correct"
+    } else {
+        document.getElementById("check1").innerHTML = "Incorrect"
+    }
+    if (yourOutput2 == document.getElementById("expected2").getAttribute('value')) {
+        document.getElementById("check2").innerHTML = "Correct"
+    } else {
+        document.getElementById("check2").innerHTML = "Incorrect"
+    }
+    if (yourOutput3 == document.getElementById("expected3").getAttribute('value')) {
+        document.getElementById("check3").innerHTML = "Correct"
+    } else {
+        document.getElementById("check3").innerHTML = "Incorrect"
+    }
+    if (yourOutput4 == document.getElementById("expected4").getAttribute('value')) {
+        document.getElementById("check4").innerHTML = "Correct"
+    } else {
+        document.getElementById("check4").innerHTML = "Incorrect"
+    }
+    if (yourOutput5 == document.getElementById("expected5").getAttribute('value')) {
+        document.getElementById("check5").innerHTML = "Correct"
+    } else {
+        document.getElementById("check5").innerHTML = "Incorrect"
+    }
+})
+.catch(function(error) {
+    console.error(error);
+})
+});
+</script>
+    
+</body>
+</html>

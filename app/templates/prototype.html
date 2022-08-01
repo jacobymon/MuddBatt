@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style type="text/css">
+        td {
+            padding: 0 15px;
+        }
+    </style>
+    <p>Code a function that,</p>
+    <p>takes in any int, x, and returns x + 1
+    </p>
+    <br>
+    <br>
+    <br>
+    <p>HINTS!</p>
+    <p>
+        f(1)) → 2
+    </p>
+    <!-- <br> -->
+    <p>
+        f(-1) → 0
+    </p>
+    <!-- <br> -->
+    <p>
+        f(41) → 42
+    </p>
+    <!-- <div id="result"><p>The list that will be inputted will show here when "submit" is clicked.</p></div> -->
+    <div><p>Type in your code here</p></div>
+    <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
+    <form action="/mango1" method=post id="form" target="dummyframe">
+        <!-- <input type="text" name="test1" />
+        <textarea id="textbox" name="test2"></textarea>
+        <input type="text" name="test3" /> -->
+        <textarea rows="5" cols="60" type=text name=text id="text">
+def f(x):
+
+        </textarea>
+        <input type=submit value=Submit>
+    
+        <table>
+            <tr>
+                <td>
+                <div>Inputs</div>
+                </td>
+                <td>
+                    <div>Your outputs</div>
+                </td>
+                <td>
+                    <div>Correct outputs</div>
+                </td>
+            </tr>
+            
+            <tr>
+              <td> 
+                  <input type=text name=one value="1">
+                </td>
+                
+                <td> 
+                    <div id="result1"></div>
+                  </td>
+                  <td> 
+                    <div><center>2</center></div>
+                  </td>
+                  <td> 
+                    <div id="check1"></div>
+                  </td>
+            </tr>
+                <td>
+                    <input type=text name=two value="2">
+                </td>
+                
+                <td>
+                     <div id="result2"></div>
+                </td>
+                <td> 
+                    <div><center>3</center></div>
+                  </td>
+                <td> 
+                    <div id="check2"></div>
+                  </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type=text name=three value="3">
+                </td>
+                
+                <td>
+                     <div id="result3"></div>
+                </td>
+                <td> 
+                    <div><center>4</center></div>
+                  </td>
+                <td> 
+                    <div id="check3"></div>
+                  </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type=text name=four value="4">
+                </td>
+                
+                <td>
+                    <div id="result4"></div>
+               </td>
+               <td> 
+                    <div><center>5</center></div>
+                  </td>
+               <td> 
+                <div id="check4"></div>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type=text name=five value="5">
+                </td>
+                
+                <td>
+                    <div id="result5"></div>
+               </td>
+               <td> 
+                    <div><center>6</center></div>
+                  </td>
+               <td> 
+                <div id="check5"></div>
+              </td>
+            </tr>
+          </table>
+    </form> 
+    <script>
+        document.getElementById('text').addEventListener('keydown', function(c) {
+  if (c.key == 'Tab') {
+    c.preventDefault();
+    var start = this.selectionStart;
+    var end = this.selectionEnd;
+
+    // set textarea value to: text before caret + tab + text after caret
+    this.value = this.value.substring(0, start) +
+      "\t" + this.value.substring(end);
+
+    // put caret at right position again
+    this.selectionStart =
+      this.selectionEnd = start + 1;
+  }
+});
+
+
+
+
+
+
+        const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+    e.preventDefault(); //prevents the Submit button from submitting a form
+    const formData= new FormData(mydata); //used to send the form data
+    fetch('http://127.0.0.1:5000/mango1', {
+        method: "POST",
+        body: formData //updates the url that we fetching so that we can get the data we want!
+    })
+    .then(function (response) {
+        return response.text();
+    })
+    .then(function (data){
+        // console.log(JSON.parse(data)[1])
+        
+        document.getElementById("result1").innerHTML = JSON.parse(data)[1];
+        document.getElementById("result2").innerHTML = JSON.parse(data)[2];
+        document.getElementById("result3").innerHTML = JSON.parse(data)[3];
+        document.getElementById("result4").innerHTML = JSON.parse(data)[4];
+        document.getElementById("result5").innerHTML = JSON.parse(data)[5];
+        if (JSON.parse(data)[1] == 2) {
+            document.getElementById("check1").innerHTML = "Correct"
+        } else {
+            document.getElementById("check1").innerHTML = "Incorrect"
+        }
+        if (JSON.parse(data)[2] == 3) {
+            document.getElementById("check2").innerHTML = "Correct"
+        } else {
+            document.getElementById("check2").innerHTML = "Incorrect"
+        }
+        if (JSON.parse(data)[3] == 4) {
+            document.getElementById("check3").innerHTML = "Correct"
+        } else {
+            document.getElementById("check3").innerHTML = "Incorrect"
+        }
+        if (JSON.parse(data)[4] == 5) {
+            document.getElementById("check4").innerHTML = "Correct"
+        } else {
+            document.getElementById("check4").innerHTML = "Incorrect"
+        }
+        if (JSON.parse(data)[5] == 6) {
+            document.getElementById("check5").innerHTML = "Correct"
+        } else {
+            document.getElementById("check5").innerHTML = "Incorrect"
+        }
+
+
+    })
+    .catch(function(error) {
+        console.error(error);
+    })
+});
+//     const otherdata = document.getElementById('form');
+// otherdata.addEventListener('submit', function(b) {
+//     b.preventDefualt();
+//     const delly= new FormData(otherdata);
+//     fetch()
+// })
+    </script> 
+<!-- <p> The output for f(1) is:</p>
+<br>
+<!-- <div id="result1"> ...</div> -->
+<!-- <p> The output for f(2) is:</p> --> 
+</body>
+</html>

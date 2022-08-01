@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    async function getData(){
+        const response = await fetch("http://127.0.0.1:5000/banana8");
+        const data = await response.json();
+        return data;
+      }
+      
+      function doSomething(data) {
+        console.log(data)
+        console.log(typeof data)
+        console.log(data.name)
+        data.ioPairs.push("hello")
+      }
+
+        function doSomethingElse(data) {
+            console.log(data)
+        }
+    // // document.getElementById("result").innerHTML = data
+    // test = JSON.parse(data)
+    // // console.log(test.name)
+    // test.ioPairs.push(j)
+    // console.log(test.ioPairs)
+    // console.log(test)
+    // const test = JSON.stringify(test)
+    // document.getElementById("newJSON").innerHTML = test
+    //     console.log(data)
+      
+      
+      getData().then(doSomething).then(doSomethingElse)
+      </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>3x3 determinant calculator!</h1>
+<div><p>Type in values to the matrix</p></div>
+
+<form method = post> 
+<table>
+    <tr>
+      <td> 
+
+          <input type=number name=one_one>
+        </td>
+      <td>
+          <input type=number name=one_two>
+    </td>
+    <td>
+        <input type=number name=one_three>
+  </td>
+    </tr>
+    <tr>
+        <td>
+            <input type=number name=two_one>
+        </td>
+        <td>
+          <input type=number name=two_two>
+    </td>
+    <td>
+        <input type=number name=two_three>
+  </td>
+    </tr>
+    </tr>
+    <td>
+        <input type=number name=three_one>
+    </td>
+    <td>
+    <input type=number name=three_two>
+    </td>
+    <td>
+    <input type=number name=three_three>
+    </td>
+    </tr>
+
+  </table>
+  <input type=submit value=Submit>
+</form>  
+{% endblock %}

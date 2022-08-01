@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <input id="a" type="number">
+    <input id="b" type="number">
+    <button onclick="myFunction()">CLICK</button>
+    <div id="result"><p>...</p></div>
+    <br>
+    <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
+    <form action="/idk" method=post id="form" target="dummyframe"> 
+    <input id="i" type=number name=test1>
+    <input id="j" type=number name=test2>
+    <input type=submit value=Submit > <!--onclick="myFunction2()"-->
+    <!-- <button onclick="myFunction2()" >CLICK</button> -->
+    </form>
+    <div id="result1"><p>...</p></div>
+    <!-- <br>
+    <br>
+    <form method=post>
+    <input id="x" type="number" name="xValue">
+    <input id="y" type="number" name="yValue">
+    <button id="Delly">CLICK</button>
+    <div id="otherResult"><p>...</p></div>
+    </form> -->
+    
+</body>
+<!-- Pure front end java script button function -->
+<script>
+    
+    function myFunction2() {
+    let c = document.getElementById("i").value;
+    console.log(c);
+    let d = document.getElementById("j").value;
+    output = parseInt(c) + parseInt(d) //I need to send this to the server somehow
+    // result_of_f = f();
+    result_of_ft = fetchText();
+    // document.getElementById("result").innerHTML = result_of_f;
+}
+
+</script>
+
+<script>
+
+async function fetchText() {
+    let response = await fetch('http://127.0.0.1:5000/idk'); //need to get the fetched file to have the correct data
+    let data = await response.text();
+    console.log(data);
+    document.getElementById("result").innerHTML = data;
+}
+
+
+const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+    e.preventDefault(); //prevents the Submit button from submitting a form
+    const formData= new FormData(mydata); //used to send the form data
+    fetch('http://127.0.0.1:5000/idk', {
+        method: "POST",
+        body: formData //updates the url that we fetching so that we can get the data we want!
+    })
+    .then(function (response) {
+        return response.text();
+    })
+    .then(function (data){
+        console.log(data)
+        document.getElementById("result1").innerHTML = data;
+
+    })
+    .catch(function(error) {
+        console.error(error);
+    })
+});
+
+function f() {
+        fetch('jacoby')
+        .then(function(response){
+            console.log( "This is us!" + response.text());
+        })
+        .then(function(data) {
+            console.log( "Also us!" + data);
+        })
+        .catch (function(error){
+            console.log( "Us, with error!" + error);
+        })
+        // return "Jacoby from fetch!";
+        return output
+    }
+
+    function otherFunction() {
+        fetch('jsAndFetch.txt')
+        .then(function(response){
+            return response.text();
+        })
+        .then(function(data) {
+            console.log(data);
+            document.getElementById('otherResult').innerHTML = "Jacoby";
+        })
+        .catch (function(error){
+            console.log(error);
+        })
+    }
+  
+    function myFunction() {
+    let c = document.getElementById("a").value
+    console.log(c)
+    let d = document.getElementById("b").value
+    document.getElementById("result").innerHTML = parseInt(c) + parseInt(d)
+}
+</script>
+
+<!-- Same action as the previous js code but implements the fetch method -->
+<!-- <script>
+    let b = document.getElementById('Delly');
+    b.onclick = () => {
+
+    otherFunction()
+
+    function otherFunction() {
+        fetch('jsAndFetch.txt')
+        .then(function(response){
+            return response.text();
+        })
+        .then(function(data) {
+            console.log(data);
+            document.getElementById('otherResult').innerHTML = "Jacoby";
+        })
+        .catch (function(error){
+            console.log(error);
+        })
+    }
+} -->
+    
+    <!-- // .then(response => {
+    //     console.log("The response worked");
+    // })
+    // .catch(response => {
+    //     console.log("Error")
+    // })
+    // async function otherFunction() {
+    //     const response = await fetch('jsAndFetchEx.txt');
+    //     document.getElementById("otherResult").innerHTML = output
+    // } -->
+</script>
+
+</html>
+{% endblock %}

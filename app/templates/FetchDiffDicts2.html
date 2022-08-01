@@ -1,0 +1,164 @@
+<!-- This is the template for the front and backend json updater. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+
+<body>
+    <button onclick="delly();" id="button">Add the data into "in" key value via front end programming</button>
+    <input id="text" name="text">
+    <br>
+    <div>The original JSON is: </div>
+    <div id="result"></div>
+    <br>
+    <p>The updated Json is:</p>
+    <div id="newJSON">...</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- dummy frame so that we do not get redirected to another page when form data is submitted -->
+    <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe> 
+    <form action="/fetchDiff3" method="post" target="dummyframe" id="form"> 
+    <input value="Update The Output Values From The Back End" type="submit" >
+    <!-- the code below is for the data that we are adding to the json -->
+    <input id="backend" name="back"> 
+    <!-- the input below is hidden, because we don't want people to see this data. it holds the stringified json value passed to the back end. -->
+    <input id="json" name="json" type="hidden">
+    </form>
+    <br>
+    <div>The following updated json is:</div>
+    <div id="resultBack"></div>
+    <script> 
+
+// fetch statement that deals with retrieving the original json
+fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    console.log(data)
+    document.getElementById("result").innerHTML = data
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+ var clicked = false
+
+// ************Front End Functionality******************
+function delly() {
+    var j = document.getElementById("text").value
+
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    dataj = JSON.parse(data)
+    dataj.in.push(j)
+    if (j == ""){ //deals with when nothing is given into input boxk we want to keep the corresponding value as an empty list. ie, so it doesn't look like ['']
+        datas = data
+    }
+    else{
+        datas = JSON.stringify(dataj)
+    }
+    document.getElementById("newJSON").innerHTML = datas
+})
+.catch(function(error) {
+    console.error(error);
+})
+
+}
+// ****************************************************
+
+
+// ********************Back end functionality******************
+
+    // this javascript has to be in the body in order for the addEventListener to work; line to work. Otherwise it reads null
+
+// fetch statement that deals with putting json data from the back end and then fetching that data
+        const mydata = document.getElementById('form');
+mydata.addEventListener('submit', function(e) {
+e.preventDefault(); //prevents the Submit button from submitting a form
+const formData= new FormData(mydata); //used to send the form data
+fetch('http://127.0.0.1:5000/fetchDiff3', {
+    method: "POST",
+    body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    document.getElementById("resultBack").innerHTML = data
+})
+.catch(function(error) {
+    console.error(error);
+})
+});
+
+// fetch scenario when the front end button is not clicked
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    document.getElementById("json").value = data //notation for assigning the value of the input that is recieved to the backend as form data
+})
+
+.catch(function(error) {
+    console.error(error);
+})
+
+
+// Fetch scenarion when the front end button is clicked
+var clicked = false
+
+
+document.getElementById('button').addEventListener("click", function() {// performs a function when it senses that the front end button has been clicked
+        clicked = true
+        var j = document.getElementById("text").value
+
+    fetch('http://127.0.0.1:5000/banana8', {
+    method: "POST",
+    // body: formData //updates the url that we fetching so that we can get the data we want!
+})
+.then(function (response) {
+    return response.text();
+})
+.then(function (data){
+    // the first few lines of code are similar operations to the front end. This is because we can't store this information in a variable and use it in this fetch statement
+    dataj = JSON.parse(data)
+    dataj.ioPairs.push(j)
+    if (j == '') { //deals with when there is no input. Makes the corresponding value and empty list. 
+        datas = data
+    }else{
+    datas = JSON.stringify(dataj)
+    }
+    document.getElementById("json").value = datas // by giving this value as datas, we are making a copy of the data that the front uses to the back end.
+})
+.catch(function(error) {
+    console.error(error);
+})
+    })
+    </script>
+
+</body>
+</html>
