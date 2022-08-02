@@ -6,6 +6,9 @@
 <html lang="en">
 <head>
 <title>ACE in Action</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
 <style type="text/css" media="screen">
     #editor { 
         position: absolute;
@@ -26,7 +29,7 @@
 <!-- source for the python highligter -->
 <script src="{{url_for('script2')}}"></script>
 
-<!-- sourc for the twilight theme -->
+<!-- source for the twilight theme -->
 <script src="{{url_for('aceExample3')}}"></script>
 
 
@@ -56,6 +59,19 @@
 <br>
 <br>
 
+
+
+<form action="/banana9" method=post id="form">
+
+<textarea name="my-xml-editor" data-editor="xml" data-gutter="1" rows="15">def f(x):</textarea>
+<br>
+<textarea name="my-markdown-editor" data-editor="markdown" data-gutter="0" rows="15"></textarea>
+<br>
+<textarea name="my-editor" data-editor="test" data-gutter="2" rows="15"></textarea>
+</form>
+
+
+
 <!-- <textarea name="description"/>
 <div id="description"/> -->
     
@@ -72,6 +88,33 @@
 // editor.getSession().on('change', function(){
 //   textarea.val(editor.getSession().getValue());
 // });
+
+// Hook up ACE editor to all textareas with data-editor attribute
+$(function() {
+  $('textarea[data-editor]').each(function() {
+    var textarea = $(this);
+    var mode = textarea.data('editor');
+    console.log("the mode is: ", mode)
+    var editDiv = $('<div>', {
+      position: 'absolute',
+      width: textarea.width(),
+      height: textarea.height(),
+      'class': textarea.attr('class')
+    }).insertBefore(textarea);
+    textarea.css('display', 'none');
+    var editor = ace.edit(editDiv[0]);
+    editor.renderer.setShowGutter(textarea.data('gutter'));
+    editor.getSession().setValue(textarea.val());
+    // editor.getSession().setMode("ace/mode/" + mode);
+    editor.session.setMode("ace/mode/python");
+    editor.setTheme("ace/theme/twilight");
+
+    // copy back to textarea on form submit...
+    textarea.closest('form').submit(function() {
+      textarea.val(editor.getSession().getValue());
+    })
+  });
+});
 </script>
 <!-- <script>document.getElementById('editor').innerHTML="this is stuff"</script> -->
 

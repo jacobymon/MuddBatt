@@ -1,3 +1,7 @@
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+
+
+
 
     //code to allow my text box to use tab
 document.getElementById('text').addEventListener('keydown', function(c) {
@@ -66,6 +70,39 @@ fetch('http://127.0.0.1:5000/banana8', { //fetches from a page that has the mudd
     console.log("start ", eval(problemNameText).name, "end")
     const problemFinder = eval(problemNameText)
 
+
+// Hook up ACE editor to all textareas with data-editor attribute
+$(function() {
+    $('textarea[data-editor]').each(function() {
+      var textarea = $(this);
+      console.log("textarea value: ", textarea)
+      textarea.append(problemFinder.funcDef) //sets the initial text inside the ace edited div 
+      console.log("textarea value: ", textarea)
+      var mode = textarea.data('editor');
+      console.log("the mode is: ", mode)
+      var editDiv = $('<div>', {
+        position: 'absolute',
+        width: textarea.width(),
+        height: textarea.height(),
+        'class': textarea.attr('class')
+      }).insertBefore(textarea);
+      console.log("This is editDiv: ", editDiv)
+      textarea.css('display', 'none');
+      var editor = ace.edit(editDiv[0]);
+      editor.renderer.setShowGutter(textarea.data('gutter'));
+      editor.getSession().setValue(textarea.val());
+      // editor.getSession().setMode("ace/mode/" + mode);
+      editor.session.setMode("ace/mode/python");
+      editor.setTheme("ace/theme/twilight");
+  
+      // copy back to textarea on form submit...
+      textarea.closest('form').submit(function() {
+        textarea.val(editor.getSession().getValue());
+      })
+    });
+  });
+
+
     //give the input value the name of the problem
     document.getElementById('problemName').value = document.getElementById('testName').innerText
 
@@ -74,7 +111,9 @@ fetch('http://127.0.0.1:5000/banana8', { //fetches from a page that has the mudd
 
     //display of the function definition
     //uncomment everything until the next uncomment mark
-    document.getElementById('text').innerHTML = problemFinder.funcDef
+
+    console.log("IDK what this will show: ", document.getElementById('text').value)
+    document.getElementById('text').value = problemFinder.funcDef //fix this to display the function's def // maybe delete this later
     console.log("this is the function defintion:", problemFinder.funcDef)
 
     console.log(document.getElementById('hint1').innerText == '')
@@ -318,6 +357,9 @@ fetch('http://127.0.0.1:5000/banana9', { //fetch the JSON data from the page wit
 var submitButton = document.getElementById('submit')
 // if ()
 submitButton.onclick = addYourOutputsCol //perform addColumn one the submit button is clicked
+
+
+
 
 // .catch(function(error) {
 //     console.error(error);
