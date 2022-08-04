@@ -571,7 +571,10 @@ testFunc() """
 #     print(factorial(10))
 # testFunc()"""
 
-   
+#helper function that puts an extra 4 spaces (a tab) wherever there is a new line in a string
+def extraTab(string):
+    new = string.replace('\n','\n    ')
+    return new
 
 
 def wan(w):

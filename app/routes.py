@@ -388,7 +388,8 @@ def fruit10():
         expected = testj[problemName]['expected'] #the list that we will add the expected values to.
         inList = testj[problemName]['in'] #list of strings of the inputs
         correctFunctName = pythonfunctions.functFinder(correctFunc) #finds the name of the function so we can concatenate it with inputs and eval!!!
-    
+        newUserFunc = pythonfunctions.extraTab(userFunct) #puts an extra 4 spaces (a tab) wherever there is a new line in a string in order
+                                                        #to correctly format the userFunct for running it through the following try and excepts
         for i in inList: #iterates through all the inputs and evaluates them with the correct function and the user's function. then it store these values in the expected
             expectedOut = eval(correctFunctName + i)
             expected.append(expectedOut)
@@ -398,10 +399,10 @@ def fruit10():
             print(a == userFunct)
             try:
                 # print("hello")
-                print("----------------------", userFunct)
+                print("----------------------", newUserFunc)
                 s =f"""
 def fruit10():
-    {userFunct}
+    {newUserFunc}
     return {userFunctName + i}
 fruit10()"""
                 print("++++++++++++++++++++++++++++++", s)
