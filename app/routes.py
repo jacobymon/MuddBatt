@@ -27,22 +27,19 @@ except:
 from app import pythonfunctions  # our Python functions are in pythonfunctions.py
 from app import brehfunction
 
-
+#***************************JavaScript
 @app.route('/aceExample') 
 def aceExample():
     return render_template('aceExample.html')
 
-@app.route('/aceExample.js') 
+@app.route('/aceExample.js') #allows us to use the ace editor
 def aceExample1():
     return render_template('aceExample.js')
 
 
-@app.route('/aceTheme.js') 
+@app.route('/aceTheme.js') #allows us to set the theme of our text box to twilight
 def aceExample3():
     return render_template('aceTheme.js')
-
-#JavaScript
-
 
 
 
@@ -63,7 +60,10 @@ def script4():
 def script2():
     return render_template('pyMode.js')
 
-
+#****************************************CSS
+@app.route('/css') #js for the textbox to be highlighted with python syntax
+def css():
+    return render_template('cssstyleexample.css')
 
 
 # Home page, renders the index.html template
@@ -80,8 +80,10 @@ def index():
         #     # fo.write(data)
         #     fo.write("hello world") 
         with open("/Users/jacobylockman/Desktop/week2_spr22/FlaskAppStarter/app/templates/jacoby.html", "w") as test:
-            test.write("<b><center><div id='testName'>{{submit}}</div></center></b>")
+            test.write('{% extends "base.html" %}\n{% block content %}')
+            test.write("<div class='test'><b><center><div id='testName'>{{submit}}</div></center></b></div>")
             test.write(data)
+            test.write('{% endblock %}')
             test.close()
 
         return render_template('jacoby.html', submit=submit)
@@ -353,7 +355,9 @@ def fruit10():
         if userFunct == "":
             errString.append("Please type into the text box.")
             return ast.literal_eval(str(testj))
-        
+        if "eval()" or "exec()" in userFunct:
+            errString.append("Code can not contain eval() or exec()")
+            return ast.literal_eval(str(testj))
         try:
             exec(userFunct)
 

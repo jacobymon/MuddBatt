@@ -135,13 +135,13 @@ $(function() {
 
     
    
+    let outputsActivityList = []
 
     console.log("this is the json object ", dataj.TwoInput)
     if(problemFinder.outputsActivity!= null){
     var outputActivityTable = document.getElementById("underOutputsTable") // the following for loop deals with creating the column of inputs for the check your understanding feature
     console.log("this is the length of the new json dict: ", Object.keys(problemFinder.outputsActivity).length)
     let counter = 1
-    let outputsActivityList = []
     // for(var j = 0; j < Object.keys(problemFinder.outputsActivity).length; j++){
         for(const key in problemFinder.outputsActivity) {
             console.log(`${key}`)
@@ -208,11 +208,12 @@ $(function() {
 
 
 // *****************************************************INPUTS ACTIVITY*****************************************************
-    if(problemFinder.inputsActivity != null){
+    let inputsActivityList = []
+
+if(problemFinder.inputsActivity != null){
     var inputsActivityTable = document.getElementById("underInputsTable") // the following for loop deals with creating the column of inputs for the check your understanding feature
     console.log("this is the length of the new json dict: ", Object.keys(problemFinder.outputsActivity).length)
     let otherCounter = 1
-    let inputsActivityList = []
     // for(var j = 0; j < Object.keys(problemFinder.outputsActivity).length; j++){
         for(const key in problemFinder.inputsActivity) {
             console.log(`${key}`)
@@ -255,7 +256,7 @@ $(function() {
 
     }
 }else{
-    
+
 }
     function checkInputsActivity() {
         for(var l = 0; l<Object.keys(problemFinder.inputsActivity).length;l++ ) {

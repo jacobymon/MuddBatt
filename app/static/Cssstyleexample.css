@@ -2,7 +2,7 @@ body {
   background-color: lightblue;
 }
 
-h1 {
+/* h1 {
   color: white;
   text-align: center;
 }
@@ -10,4 +10,10 @@ h1 {
 p {
   font-family: verdana;
   font-size: 20px;
+} */ */
+.test {
+  background-color: yellow;
+}
+.instructions{
+  background-color: yellow;
 }
