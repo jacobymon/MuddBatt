@@ -28,6 +28,15 @@
         td {
             padding: 0 15px;
         }
+
+        #outputsTable {
+            width: 100%;
+            padding: 50px 0;
+            text-align: center;
+            background-color: lightblue;
+            margin-top: 20px;
+        }
+
     </style>
     <p>Code a function that,</p>
     <div id="instructions">
@@ -36,23 +45,52 @@
     <br>
     <br>
     <br>
-    <!-- working on the check your understanding feature with the following commented table -->
-    <!-- <table id = underOutputs>
+    <p>Recommended activity: Test your understanding of the problem</p>
+    <button id="show-hide">Try</button>
+
+    <hideShow id ='hideShow' style="display:none">
+    <ifNotProvided id="ifNotProvided">
+
+    <table id = underOutputs >
         <tr>
           <td>
           <div>Inputs</div>
           </td>
           <td>
-              <div>outputs</div>
+              <div>Outputs</div>
           </td>
       </tr>
-      <tr>
-          <td>4</td>
-          <td> 5</td>
-      </tr> -->
+      
     <tbody id="underOutputsTable">
           </tbody>
       </table>
+
+    <button id="ouputsActivityCheck"><b>Check Your Outpus</b></button>
+    </ifNotProvided>
+
+    <br>
+    <br>
+    <otherIfNotProvided id="otherIfNotProvided">
+    <table id = underInputs>
+        <tr>
+          <td>
+          <div>Inputs</div>
+          </td>
+          <td>
+              <div>Outputs</div>
+          </td>
+      </tr>
+      
+    <tbody id="underInputsTable">
+          </tbody>
+      </table>
+
+    <button id="inputActivityCheck"><b>Check Your Inputs</b></button>
+</otherIfNotProvided>
+    </hideShow>
+
+    <br>
+    <br>
     <button id="hints"><p>HINTS!</p></button>
     <div id="hint1">
         <p>

@@ -27,24 +27,6 @@ this.selectionStart =
 });
 
 
-// ************************Uncomment
-// var editor = ace.edit('text')
-// // editor.renderer.setShowGutter(false)
-// // editor.setTheme('ace/theme/chrome')
-// // editor.getSession().setMode('ace/mode/python')
-// // editor.getSession().setTabsize(2)
-// // editor.getSession().setUseSoftTabs(true)
-// // document.ace_editor = editor
-// // editor.$blockScrolling = Infinity
-// // setupKey(editor)
-// // startCursor(editor, 'python')
-// var textarea = $('textarea[name="text"]').hide();
-// editor.getSession().setValue(textarea.val());
-// editor.getSession().on('change', function(){
-//   textarea.val(editor.getSession().getValue());
-// });
-// ************************Uncomment
-
 
 
 
@@ -101,8 +83,28 @@ $(function() {
       })
     });
   });
+  
+  
 
+  function myFunction() {
+    var x = document.getElementById("hideShow");
+    if(problemFinder.outputsActivity == null){
+        document.getElementById('ifNotProvided').innerHTML = 'Output activity not provided'
+    }
+    if(problemFinder.inputsActivity == null){
+        document.getElementById('otherIfNotProvided').innerHTML = 'Input activity not Provided'
+    }
 
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  var btn = document.getElementById('show-hide')
+    btn.addEventListener('click', myFunction)
+
+// ******************************************OUTPUT ACTIVITY****************************************************
     //give the input value the name of the problem
     document.getElementById('problemName').value = document.getElementById('testName').innerText
 
@@ -135,9 +137,157 @@ $(function() {
    
 
     console.log("this is the json object ", dataj.TwoInput)
-    // document.getElementById("problemName").innerHTML = problemFinder.name //we don't need this anymore DELETE ME
+    if(problemFinder.outputsActivity!= null){
+    var outputActivityTable = document.getElementById("underOutputsTable") // the following for loop deals with creating the column of inputs for the check your understanding feature
+    console.log("this is the length of the new json dict: ", Object.keys(problemFinder.outputsActivity).length)
+    let counter = 1
+    let outputsActivityList = []
+    // for(var j = 0; j < Object.keys(problemFinder.outputsActivity).length; j++){
+        for(const key in problemFinder.outputsActivity) {
+            console.log(`${key}`)
+            
+            id = "output" + String(counter)
+            console.log(id)
+            check = "outputCheck" + String(counter)
+            counter++
+            
+        
+        // id = "value" + String(j + 1)
+        // console.log(id)
+        // names = "name" + String(j + 1)
+        // values = problemFinder.in[j]
+        // StarterValues = problemFinder.originalIn[j]
+
+
+
+        // console.log(values)
+
+
+        var inputCols = `<tr>
+                        <td>
+                            ${key}
+                        </td>
+                        <td>
+                            <input type=text id= ${id}>
+
+                        </td>
+                        <td>
+                            <div id=${check}></div>
+                        </td>
+                        </tr>
+                        `
+
+        outputsActivityList.push(`${problemFinder.outputsActivity[key]}`)
+        console.log("this is the list: ", outputsActivityList)
+        outputActivityTable.innerHTML+=inputCols
+
+    }
+}else{
+
+}
+    function checkOutputsActivity() {
+        for(var l = 0; l<Object.keys(problemFinder.outputsActivity).length;l++ ) {
+
+            if( document.getElementById('output' + String(l + 1)).value== outputsActivityList[l]){
+            console.log("correct")
+            
+            document.getElementById("outputCheck" + String(l + 1)).innerHTML = "Correct"
+        }else{
+            console.log("incorrect")
+            document.getElementById("outputCheck" + String(l + 1)).innerHTML = "Incorrect"
+
+        }
+        }
+        
+    }
+
+
+
+    var btn = document.getElementById('ouputsActivityCheck')
+    btn.addEventListener('click', checkOutputsActivity )
+
+
+// *****************************************************INPUTS ACTIVITY*****************************************************
+    if(problemFinder.inputsActivity != null){
+    var inputsActivityTable = document.getElementById("underInputsTable") // the following for loop deals with creating the column of inputs for the check your understanding feature
+    console.log("this is the length of the new json dict: ", Object.keys(problemFinder.outputsActivity).length)
+    let otherCounter = 1
+    let inputsActivityList = []
+    // for(var j = 0; j < Object.keys(problemFinder.outputsActivity).length; j++){
+        for(const key in problemFinder.inputsActivity) {
+            console.log(`${key}`)
+            console.log(`${problemFinder.inputsActivity[key]}`)
+            
+            id = "input" + String(otherCounter)
+            console.log(id)
+            check = "inputCheck" + String(otherCounter)
+            otherCounter++
+            
+        
+        // id = "value" + String(j + 1)
+        // console.log(id)
+        // names = "name" + String(j + 1)
+        // values = problemFinder.in[j]
+        // StarterValues = problemFinder.originalIn[j]
+
+
+
+        // console.log(values)
+
+
+        var inputCols = `<tr>
+                        <td>
+                            <input type=text id= ${id}>
+
+                        </td>
+                        <td>
+                            ${key}
+                        </td>
+                        <td>
+                            <div id=${check}></div>
+                        </td>
+                        </tr>
+                        `
+
+        inputsActivityList.push(`${problemFinder.inputsActivity[key]}`)
+        console.log("this is the list: ", inputsActivityList)
+        inputsActivityTable.innerHTML+=inputCols
+
+    }
+}else{
+    
+}
+    function checkInputsActivity() {
+        for(var l = 0; l<Object.keys(problemFinder.inputsActivity).length;l++ ) {
+            console.log("the is the other list ", inputsActivityList)
+
+            if( document.getElementById('input' + String(l + 1)).value== inputsActivityList[l]){
+            console.log("correct")
+            
+            document.getElementById("inputCheck" + String(l + 1)).innerHTML = "Correct"
+        }else{
+            console.log("incorrect")
+            document.getElementById("inputCheck" + String(l + 1)).innerHTML = "Incorrect"
+
+        }
+        }
+        
+    }
+
+
+
+    var btn = document.getElementById('inputActivityCheck')
+    btn.addEventListener('click', checkInputsActivity )
+
+
+
+
+
+    
+
+
     console.log(problemFinder.originalIn.length)
-    var table = document.getElementById("myTable")
+    var table = document.getElementById("myTable") // the followinf for loop deals with creating the column of inputs underneath the textbox
     
     for(var i = 0; i < problemFinder.originalIn.length; i++){ //right now there are only 5 input boxes displayed, but in the future create an add input button some how.
         id = "value" + String(i + 1)

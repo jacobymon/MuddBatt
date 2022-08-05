@@ -23,7 +23,11 @@
         "instructions": "takes in an integer x and adds one to x",
         "hints" : [],
         "funcDef": "def f(x):", 
-        "error": []
+        "error": [],
+        "outputsActivity": { "3": "4", "-2" : "-1", "0": "1"},
+        "inputsActivity": { "999": "998", "123": "122", "1": "0"}
+
+
 }
     
 
