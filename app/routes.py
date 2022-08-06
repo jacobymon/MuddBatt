@@ -355,9 +355,19 @@ def fruit10():
         if userFunct == "":
             errString.append("Please type into the text box.")
             return ast.literal_eval(str(testj))
-        if "eval()" or "exec()" in userFunct:
+        if userFunct != None and "eval()" in userFunct:
             errString.append("Code can not contain eval() or exec()")
             return ast.literal_eval(str(testj))
+#for some reason, or doesn't work with the "in" statement so I made two different if statements
+        if userFunct != None and "exec()" in userFunct:
+            errString.append("Code can not contain eval() or exec()")
+            return ast.literal_eval(str(testj))
+
+
+        # if "exec()" in userFunct:
+        #     errString.append(userFunct)
+        #     return ast.literal_eval(str(testj))
+
         try:
             exec(userFunct)
 

@@ -23,7 +23,9 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MuddBatt</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='MuddBattProto.jpg') }}">
+
 </head>
 <body>
     <!-- <b><center><div id="problemName"> <h1></h1></div></center></b> -->
@@ -46,8 +48,9 @@
     <br>
     <br>
     <br>
-    <p>Recommended activity: Test your understanding of the problem</p>
-    <button id="show-hide">Try</button>
+    <div class="activity" style="display:inline"><p><b>Recommended activity: Test your understanding of the problem</b></p></div>
+    <div class="otherInstructions">Enter the correct outputs and inputs for the proposed function.</div>
+    <button class="button" id="show-hide">Try</button>
 
     <hideShow id ='hideShow' style="display:none">
     <ifNotProvided id="ifNotProvided">
@@ -66,7 +69,7 @@
           </tbody>
       </table>
 
-    <button id="ouputsActivityCheck"><b>Check Your Outpus</b></button>
+    <button class="button1" id="ouputsActivityCheck"><b>Check Your Outpus</b></button>
     </ifNotProvided>
 
     <br>
@@ -86,13 +89,13 @@
           </tbody>
       </table>
 
-    <button id="inputActivityCheck"><b>Check Your Inputs</b></button>
+    <button class=button2 id="inputActivityCheck"><b>Check Your Inputs</b></button>
 </otherIfNotProvided>
     </hideShow>
 
     <br>
     <br>
-    <button id="hints"><p>HINTS!</p></button>
+    <button class="button3" id="hints"><p>HINTS!</p></button>
     <div id="hint1">
         <p>
             
@@ -122,7 +125,7 @@
         <textarea name="text" id="text" type="text" data-editor="xml" data-gutter="1" rows="15" cols="60"></textarea>
 
  
-        <input type=submit value=Submit id="submit">
+        <input class="button4"type=submit value=Submit id="submit">
         <div id="error"></div>
     <!-- table that displays inputs & outpus and takes in data. -->
     <table>

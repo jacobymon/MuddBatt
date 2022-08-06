@@ -2,12 +2,23 @@
 
 
 body {
-     background-color: yellow;
+     background-color: F9ECC3 ;
  }
  .test{
      font-size: larger;
      font-family:Verdana, Geneva, Tahoma, sans-serif;
+     background: #FFDB33;
+
  }
+ .activity{
+    /* font-family: ; */
+    overflow: hidden;
+    white-space: nowrap;
+ }
+ .button,.button1,.button2,.button3,.button4{
+    background: #FFDB33;
+ }
+ 
  .instructions{
      background: #FFDB33;
      align-items: center;
@@ -15,3 +26,15 @@ body {
      font-family: "Lucida Console", "Courier New", monospace;
 
  }
+ .otherInstructions{
+    background: #FFDB33;
+    align-items: center;
+    font-family: "Lucida Console", "Courier New", monospace;
+    padding: 20px;
+
+
+ }
+
+ table, th, td {
+    border: 1px solid;
+  }

@@ -485,7 +485,7 @@ fetch('http://127.0.0.1:5000/banana9', { //fetch the JSON data from the page wit
         console.log("One is : ", newRow.cells[1].innerText)
         console.log("two is: ", newRow.cells[2].innerText)
         console.log(newRow.cells[1].innerText == newRow.cells[2].innerText)
-        if(newRow.cells[1].innerText == newRow.cells[2].innerText) {
+        if(newRow.cells[1].innerText == newRow.cells[2].innerText && newRow.cells[1].innerText != "undefined") {
             document.getElementById(currentCheckId).innerHTML = "Correct"
         }else{
             document.getElementById(currentCheckId).innerHTML = "Incorrect"

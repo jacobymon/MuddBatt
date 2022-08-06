@@ -1,0 +1,44 @@
+body{
+    /* background-color: #DACC8A; */
+    /* background-image: url(MuddBattProto.jpg); */
+}
+body:before{
+    content: ' ';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:  url(MuddBattProto.jpg);
+    background-position: center;  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+/* img.logo{
+    object-position: center top;
+
+} */
+
+.input,.input1{
+    background-color: #FFDB33 ;
+}
+
+
+img{
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+.title{
+    background: #FFDB33;
+    /* padding: 15px; */
+
+}
+.alienWords{
+    color: green;
+    font-size: larger;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}

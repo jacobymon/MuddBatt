@@ -3,8 +3,10 @@
       {% if title %}
       <title>{{ title }} - ExampleApp</title>
       {% else %}
-      <title>Welcome to ExampleApp</title>
+      <title>MuddBatt</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'style.css')}}">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='MuddBattProto.jpg') }}">
+
 
       <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'aceStyle.css')}}">
       <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'Cssstyleexample')}}"> -->

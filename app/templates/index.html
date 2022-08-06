@@ -1,13 +1,29 @@
-<!-- {% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuddBatt</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='MuddBattProto.jpg') }}">
 
-{% block content %} -->
+</head>
+<body>
+    
 
+    <img src="alien.png" alt="Three Eyed Alien">
+
+
+
+<!-- This is the link to the css file that styles the index page only -->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='index.css') }}">
+
+<!-- <img class=logo src="MuddBattProto.jpg" alt="MuddBatt"> -->
+
+    <div class="title"><center><h1>MuddBatt</h1></center></div>
+    <div class="alienWords"><b><p>- Click below to try out problems!</p></b></div>
     
-    <center><h1>MuddBatt</h1></center>
-    <div><p>Click below to check our a pig latin translator
-        a picture pixel inverter!</p></div>
-    
-    <div>ace example <a href="/aceExample">Translate now!</a></div>
+    <!-- <div>ace example <a href="/aceExample">Translate now!</a></div>
     <div>Pig Latin Translator: <a href="/text">Translate now!</a></div>
     
     <div>Image Pixel Inverter: <a href="/image">Invert now!</a></div>
@@ -34,13 +50,16 @@
     <div> Mudd Bat 3<a href="/banana3">Click to Try!</a></div>
     <div> Mudd Bat 4<a href="/banana5">Click to Try!</a></div>
     <div> Mudd Bat 5<a href="/banana7">Click to Try!</a></div>
-    <div>Create Your Own Problem <a href="/banana11">Click to Try!</a></div>
+    <div>Create Your Own Problem <a href="/banana11">Click to Try!</a></div> -->
 
 
     <form action="/" method=post id="form" name="form" target="dummyframe">
-        <input type=submit value="TwoInput" id="btnSubmit" name="btnSubmit">
         <br>
-        <input type=submit value="xPlusOne" id="btnSubmit" name="btnSubmit">
+        <br>
+        <input class=input type=submit value="TwoInput" id="btnSubmit" name="btnSubmit">
+        <br>
+        <br>
+        <input class=input1 type=submit value="xPlusOne" id="btnSubmit" name="btnSubmit">
         <!-- <input id="test" name="test"> -->
     <!-- <div> TwoInput <button onclick="TwoInput();">Click to Try!</button></div> //turn into a submit button
     <div> x + 1 <button onclick="TwoInput();">Click to Try!</button></div>  -->
@@ -108,5 +127,5 @@ document.getElementById("form").addEventListener("submit", function(muddBat){
 // }        
 
     </script>
-
-<!-- {% endblock %} -->
+</body>
+</html>
