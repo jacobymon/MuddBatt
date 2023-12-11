@@ -19,11 +19,11 @@ Notes:
   flask.palletsprojects.com/en/2.0.x/installation/
 
 
-+++ [2] Be sure you know where the week2 files are for this class...
++++ [2] Be sure you know where the "MuddBatt" file is...
 
 Still at your shell/command-line/terminal:
 
-    cd within our week 2's files ... to FlaskAppStarter
+    cd within "MuddBatt"
 
 
 +++ [3] Set environment variables, different for Mac vs Windows:
@@ -45,7 +45,7 @@ Still at the command-line, run
 
     python -m flask run
 
-(be sure you're in the FlaskAppStarter folder)
+(be sure you're in the MuddBatt folder)
 If it works, you should see a number of messages, and then
 
 
@@ -55,9 +55,9 @@ Paste this url into a new tab of your browser:
 
     http://127.0.0.1:5000/ 
 
+*******NOTE!!!!IMPORTANT!!!!!!!
+you will need to adjust the filepath in the routes folder in order for this application to work on your machine. See "index" function in routes.py
 
-Let me&us know if there are troubles!
+Let me know if there are troubles!
 
-(If Flask simply refuses to work, our fall-back is to write substitute in Python and check it there... 
- However, that's not as fun -- and not as "full-stack!")
 

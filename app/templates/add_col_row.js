@@ -1,1 +1,0 @@
-document.getElementById('editor').innerHTML = "this is text"

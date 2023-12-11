@@ -11,11 +11,8 @@ routes.py:
 Main script with all of the routing for the app. Handles backend scripts and
 renders templates from the templates folder. 
 
-piglatin.py:
-Script that takes in a string and returns that string translated to pig latin
-
 pythonfunctions.py:
-Script for improving the "substitution"-functions for hw2pr2...
+script that contains all of the backend functions
 
 templates:
 Folder that holds the html code

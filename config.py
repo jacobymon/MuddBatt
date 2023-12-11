@@ -1,4 +1,4 @@
-# Authors: CS For Insight (Summer19 - JG)
+# Authors: Jacoby Lockman & Kingsley Osei
 
 import os
 

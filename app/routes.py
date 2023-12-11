@@ -1,4 +1,4 @@
-# Authors: CS For Insight (Summer19 - JG)
+# Authors: Jacoby Lockman & Kingsley Osei
 
 try:
     from flask import render_template, redirect, url_for, request, send_from_directory, flash, json
@@ -25,7 +25,6 @@ except:
     print("Make sure to pip install Pillow")
 
 from app import pythonfunctions  # our Python functions are in pythonfunctions.py
-from app import brehfunction
 
 #***************************JavaScript
 @app.route('/aceExample') 
@@ -76,10 +75,12 @@ def index():
         print("submit value is: ", submit)
         data = request.form['data']
         print("the data is: ", data)
-        # with open("jacoby.html", "w") as fo:
-        #     # fo.write(data)
-        #     fo.write("hello world") 
-        with open("/Users/jacobylockman/Desktop/week2_spr22/FlaskAppStarter/app/templates/jacoby.html", "w") as test:
+        
+
+        #if cloning from github, you will need to put your corresponding file path here.
+        #opens the html file that we render on the /index page and writes into it the corresponding problem
+        #then we render this file.
+        with open("/Users/jacobylockman/Desktop/week2_spr22/MuddBatt/app/templates/jacoby.html", "w") as test:
             test.write('{% extends "base.html" %}\n{% block content %}')
             test.write("<div class='test'><b><center><div id='testName'>{{submit}}</div></center></b></div>")
             test.write(data)
@@ -90,83 +91,83 @@ def index():
     return render_template('index.html', title='Home')
 
 # Pig latin page, when we click translate, moves to text result page
-@app.route('/text',methods=['GET','POST'])
-def text():
-    if request.method == 'POST':
-        old_text = request.form['text']
-        new_text = pythonfunctions.pig_translate(old_text)
-        return render_template('textResults.html', old_text=old_text, new_text=new_text)
-    return render_template('text.html', title='Home')
+# @app.route('/text',methods=['GET','POST'])
+# def text():
+#     if request.method == 'POST':
+#         old_text = request.form['text']
+#         new_text = pythonfunctions.pig_translate(old_text)
+#         return render_template('textResults.html', old_text=old_text, new_text=new_text)
+#     return render_template('text.html', title='Home')
 
 #breh latin page
-@app.route('/breh',methods=['GET','POST'])
-def breh():
-    if request.method == 'POST':
-        old = request.form['text']
-        new = brehfunction.breh_translator(old)
-        return render_template('brehResults.html', old=old, new=new)
-    return render_template('breh.html', title='Home')
+# @app.route('/breh',methods=['GET','POST'])
+# def breh():
+#     if request.method == 'POST':
+#         old = request.form['text']
+#         new = brehfunction.breh_translator(old)
+#         return render_template('brehResults.html', old=old, new=new)
+#     return render_template('breh.html', title='Home')
 #determinant calculator page
-@app.route('/determinant',methods=['GET','POST'])
-def determinant():
-    if request.method == 'POST':
-        one_one = request.form['one_one']
-        one_two = request.form['one_two']
-        two_one = request.form['two_one']
-        two_two = request.form['two_two']
-        det = pythonfunctions.determinant(one_one, one_two, two_one, two_two)
-        return render_template('determinantResults.html', det=det)
-    return render_template('determinant.html', title='Home')
+# @app.route('/determinant',methods=['GET','POST'])
+# def determinant():
+#     if request.method == 'POST':
+#         one_one = request.form['one_one']
+#         one_two = request.form['one_two']
+#         two_one = request.form['two_one']
+#         two_two = request.form['two_two']
+#         det = pythonfunctions.determinant(one_one, one_two, two_one, two_two)
+#         return render_template('determinantResults.html', det=det)
+#     return render_template('determinant.html', title='Home')
 
 #loopquiz route
-@app.route("/loopquiz")
-def loopquiz():
-    return render_template('loopquiz.html', title='Home')
+# @app.route("/loopquiz")
+# def loopquiz():
+#     return render_template('loopquiz.html', title='Home')
 
 #Front-button page
-@app.route("/Front-button.html")
-def Front_button():
-    return render_template('Front-button.html', title='Home')
+# @app.route("/Front-button.html")
+# def Front_button():
+#     return render_template('Front-button.html', title='Home')
 
 #program to int
-@app.route("/string_to_int.html",methods=['GET','POST'])
-def stringToInt():
-    if request.method == 'POST':
-        text = request.form['text']
-        int = pythonfunctions.stringToInt(text)
-        return render_template('string_to_int_Results.html', text=text, int=int)
-    return render_template('string_to_int.html', title='Home')
-#int to program
-@app.route("/int_to_string.html",methods=['GET','POST'])
-def intToString():
-    if request.method == 'POST':
-        num = request.form['num']
-        s = pythonfunctions.newDeciInput(num)
-        return render_template('int_to_string_Results.html', num=num, s=s)
-    return render_template('int_to_string.html', title='Home')
+# @app.route("/string_to_int.html",methods=['GET','POST'])
+# def stringToInt():
+#     if request.method == 'POST':
+#         text = request.form['text']
+#         int = pythonfunctions.stringToInt(text)
+#         return render_template('string_to_int_Results.html', text=text, int=int)
+#     return render_template('string_to_int.html', title='Home')
+# #int to program
+# @app.route("/int_to_string.html",methods=['GET','POST'])
+# def intToString():
+#     if request.method == 'POST':
+#         num = request.form['num']
+#         s = pythonfunctions.newDeciInput(num)
+#         return render_template('int_to_string_Results.html', num=num, s=s)
+#     return render_template('int_to_string.html', title='Home')
 
-@app.route("/test.html")
-def testFunction():
-    return render_template('test.html', title= 'Home')
+# @app.route("/test.html")
+# def testFunction():
+#     return render_template('test.html', title= 'Home')
 
 # @app.route("/jsAndFetchEx.html")
 # def jsAndFetchEx():
 #     return render_template('jsAndFetchEx.html', title = 'Home')
 
 
-@app.route("/jsAndFetchEx.html", methods=['GET','POST'])
-def jsAndFetchEx():
-    if request.method == 'POST':
-        old_text = request.form['king']
-        # new_text = pythonfunctions.pig_translate(old_text)
-        return old_text + "jacoby"
-    # if request.method == 'POST':
-    #     # xValue = request.form('xValue')
-    #     # yValue = request.form('yValue')
-    #     # output = pythonfunctions.jsAndFetchEx(xValue,yValue)
-    #     melon = request.form('test1')
-    #     return render_template('donkey.html', melon=melon)
-    return render_template('jsAndFetchEx.html', title='Home')
+# @app.route("/jsAndFetchEx.html", methods=['GET','POST'])
+# def jsAndFetchEx():
+#     if request.method == 'POST':
+#         old_text = request.form['king']
+#         # new_text = pythonfunctions.pig_translate(old_text)
+#         return old_text + "jacoby"
+#     # if request.method == 'POST':
+#     #     # xValue = request.form('xValue')
+#     #     # yValue = request.form('yValue')
+#     #     # output = pythonfunctions.jsAndFetchEx(xValue,yValue)
+#     #     melon = request.form('test1')
+#     #     return render_template('donkey.html', melon=melon)
+#     return render_template('jsAndFetchEx.html', title='Home')
         
 # this is a test to try and recieve data from the server and put it on the txt file
 # with open("//Users//jacobylockman//Desktop//week2_spr22//FlaskAppStarter//app//static//fetchResultsEx.txt", "w")as e:
@@ -181,164 +182,165 @@ def jsAndFetchEx():
 # def cool():
 #     return "cool"
 
-@app.route("/dynamicAddCol", methods=['GET', 'POST'])
-def tableSandbox1():
-    return render_template('dynamicAddCol.html', title='Home')
+# @app.route("/dynamicAddCol", methods=['GET', 'POST'])
+# def tableSandbox1():
+#     return render_template('dynamicAddCol.html', title='Home')
 
 @app.route("/tableSandbox", methods=['GET', 'POST'])
 def tableSandbox():
     return render_template('tableSandbox.html', title='Home')
 
 #this is the url that is being fetched for the fetch example page
-@app.route("/idk", methods=['GET','POST'])
-def joe():
-    if request.method == 'POST':
-        input1 = request.form['test1']
-        input2 = request.form['test2']
-        output = pythonfunctions.jsAndFetchEx(input1, input2)
-        # new_text = pythonfunctions.pig_translate(old_text)
-        return output
-    return "this didn't get the post"
+# @app.route("/idk", methods=['GET','POST'])
+# def joe():
+#     if request.method == 'POST':
+#         input1 = request.form['test1']
+#         input2 = request.form['test2']
+#         output = pythonfunctions.jsAndFetchEx(input1, input2)
+#         # new_text = pythonfunctions.pig_translate(old_text)
+#         return output
+#     return "this didn't get the post"
     # return render_template('donkey.html') #in the front end fetch ...../idk
 #MuddBat
-@app.route("/mango", methods=['GET', 'POST'])
-def fruit():
-    return render_template('prototype.html', title='Home')
+# @app.route("/mango", methods=['GET', 'POST'])
+# def fruit():
+#     return render_template('prototype.html', title='Home')
     # return "mango"
 
-@app.route("/mango1", methods=['GET', 'POST'])
-def fruit1():
-    if request.method =='POST':
-        output = request.form['text']
-        # list=[]
-        # inlist= list.extend([request.form['one'], request.form['two'], request.form['three'], request.form['four'], request.form['five']])
-        # # inlist = [1,2,3,4,5]
-        # newlist = list.append(request.form['one'])
-        # newnewlist= list.append(request.form['two'])
-        # test = list.append(request.form['one'])
-        test1 = request.form['one']
-        test2 = pythonfunctions.myAppend([],test1)
-        test3 = pythonfunctions.myAppend(test2, request.form['two'])
-        test4 = pythonfunctions.myAppend(test3, request.form['three'])
-        test5 = pythonfunctions.myAppend(test4, request.form['four'])
-        test6 = pythonfunctions.myAppend(test5, request.form['five']) # this list will be passed as a string accross the wire, the elements will also be string because request.form passes data over the wire
-        result = pythonfunctions.compEx5(output, test6)
-        result = pythonfunctions.compEx5(output, test3)
+# @app.route("/mango1", methods=['GET', 'POST'])
+# def fruit1():
+#     if request.method =='POST':
+#         output = request.form['text']
+#         # list=[]
+#         # inlist= list.extend([request.form['one'], request.form['two'], request.form['three'], request.form['four'], request.form['five']])
+#         # # inlist = [1,2,3,4,5]
+#         # newlist = list.append(request.form['one'])
+#         # newnewlist= list.append(request.form['two'])
+#         # test = list.append(request.form['one'])
+#         test1 = request.form['one']
+#         test2 = pythonfunctions.myAppend([],test1)
+#         test3 = pythonfunctions.myAppend(test2, request.form['two'])
+#         test4 = pythonfunctions.myAppend(test3, request.form['three'])
+#         test5 = pythonfunctions.myAppend(test4, request.form['four'])
+#         test6 = pythonfunctions.myAppend(test5, request.form['five']) # this list will be passed as a string accross the wire, the elements will also be string because request.form passes data over the wire
+#         result = pythonfunctions.compEx5(output, test6)
+#         result = pythonfunctions.compEx5(output, test3)
 
-        # result = pythonfunctions.compEx3(output, inlist)
-        return jsonify(result)
-        # return jsonify(str(result))
-    return "this didn't work"
+#         # result = pythonfunctions.compEx3(output, inlist)
+#         return jsonify(result)
+#         # return jsonify(str(result))
+#     return "this didn't work"
 
-@app.route("/asyncPract", methods=['GET', 'POST'])
-def practice():
-    return render_template('asyncPract.html', title='Home')
+# @app.route("/asyncPract", methods=['GET', 'POST'])
+# def practice():
+#     return render_template('asyncPract.html', title='Home')
 
-@app.route("/fetchDiff", methods=['GET', 'POST'])
-def asdf():
-    return render_template('FetchDiffDicts.html', title='Home')
+# @app.route("/fetchDiff", methods=['GET', 'POST'])
+# def asdf():
+#     return render_template('FetchDiffDicts.html', title='Home')
 
-@app.route("/fetchDiff1", methods=['GET', 'POST'])
-def asdfa():
-    return render_template('FetchDiffDicts1.html', title='Home')
+# @app.route("/fetchDiff1", methods=['GET', 'POST'])
+# def asdfa():
+#     return render_template('FetchDiffDicts1.html', title='Home')
 
-@app.route("/fetchDiff2", methods=['GET', 'POST'])
-def asdfaa():
-    return render_template('FetchDiffDicts2.html', title='Home')
+# @app.route("/fetchDiff2", methods=['GET', 'POST'])
+# def asdfaa():
+#     return render_template('FetchDiffDicts2.html', title='Home')
 
-@app.route("/fetchDiff3", methods=['GET', 'POST'])
-def asdfaaa():
-    if request.method == 'POST':
-        add = request.form['back'] #the form data that we want to updat the incoming json with.
-        test = request.form['json'] # gets the form data which is the string of a json object
-        testj = json.loads(test) # converts from a string into an actual dictionary
-        outputList = testj['expected'] #notation for accessing key value pairs in the dict
-        if add == '': #if/else statements handle the case when nothing is submitted, we keep the value as an empty list
-            return str(testj)
-        else:
-            outputList.append(add) #append add into list which is the value for the key 'expected'
-            return str(testj) 
-    return "This didn't post"
+# @app.route("/fetchDiff3", methods=['GET', 'POST'])
+# def asdfaaa():
+#     if request.method == 'POST':
+#         add = request.form['back'] #the form data that we want to updat the incoming json with.
+#         test = request.form['json'] # gets the form data which is the string of a json object
+#         testj = json.loads(test) # converts from a string into an actual dictionary
+#         outputList = testj['expected'] #notation for accessing key value pairs in the dict
+#         if add == '': #if/else statements handle the case when nothing is submitted, we keep the value as an empty list
+#             return str(testj)
+#         else:
+#             outputList.append(add) #append add into list which is the value for the key 'expected'
+#             return str(testj) 
+#     return "This didn't post"
 
-@app.route("/fetchDiff4", methods=['GET', 'POST'])
-def asdfaaaa():
-    return render_template('FetchDiffDicts4.html', title='Home')
+# @app.route("/fetchDiff4", methods=['GET', 'POST'])
+# def asdfaaaa():
+#     return render_template('FetchDiffDicts4.html', title='Home')
 
-@app.route("/fetchDiff5", methods=['GET', 'POST'])
-def asdfaaaaa():
-    return render_template('FetchDiffDicts5.html', title='Home')
+# @app.route("/fetchDiff5", methods=['GET', 'POST'])
+# def asdfaaaaa():
+#     return render_template('FetchDiffDicts5.html', title='Home')
 
 
-@app.route("/banana", methods=['GET', 'POST'])
-def fruit2():
-    return render_template('twoInput.html', title='Home')
+# @app.route("/banana", methods=['GET', 'POST'])
+# def fruit2():
+#     return render_template('twoInput.html', title='Home')
     # return "mango"
 
-@app.route("/banana1", methods=['GET', 'POST'])
-def fruit3():
-    if request.method =='POST':
-        output = request.form['text']
-        test1 = request.form['one']
-        test2 = pythonfunctions.myAppend([],test1)
-        test3 = pythonfunctions.myAppend(test2, request.form['two'])
-        test4 = pythonfunctions.myAppend(test3, request.form['three'])
-        test5 = pythonfunctions.myAppend(test4, request.form['four'])
-        test6 = pythonfunctions.myAppend(test5, request.form['five']) # this list will be passed as a string accross the wire, the elements will also be string because request.form passes data over the wire
-        result = pythonfunctions.compEx5(output, test6) #we can't return this dictionary because the keys are tuples
-        newresult = pythonfunctions.specialSauce(str(result)) #special suace just puts it into the form of a workable json object
+# @app.route("/banana1", methods=['GET', 'POST'])
+# def fruit3():
+#     if request.method =='POST':
+#         output = request.form['text']
+#         test1 = request.form['one']
+#         test2 = pythonfunctions.myAppend([],test1)
+#         test3 = pythonfunctions.myAppend(test2, request.form['two'])
+#         test4 = pythonfunctions.myAppend(test3, request.form['three'])
+#         test5 = pythonfunctions.myAppend(test4, request.form['four'])
+#         test6 = pythonfunctions.myAppend(test5, request.form['five']) # this list will be passed as a string accross the wire, the elements will also be string because request.form passes data over the wire
+#         result = pythonfunctions.compEx5(output, test6) #we can't return this dictionary because the keys are tuples
+#         newresult = pythonfunctions.specialSauce(str(result)) #special suace just puts it into the form of a workable json object
 
         # result = pythonfunctions.compEx3(output, inlist)
-        return jsonify(newresult)
+        # return jsonify(newresult)
         # return jsonify(str(newresult))
         # return jsonify(str(result))
         # return str(test5)
 
-    return "this didn't work"
+    # return "this didn't work"
 
-@app.route("/banana3", methods=['GET', 'POST'])
-def fruit4():
-    return render_template('twoInput1.html', title='Home')
+# @app.route("/banana3", methods=['GET', 'POST'])
+# def fruit4():
+#     return render_template('twoInput1.html', title='Home')
 
-@app.route("/banana4", methods=['GET', 'POST'])
-def fruit5():
-    if request.method =='POST':
-        output = request.form['text']
-        test1 = request.form['one1']
-        test2 = pythonfunctions.myAppend([],test1)
-        test3 = pythonfunctions.myAppend(test2, request.form['two1'])
-        test4 = pythonfunctions.myAppend(test3, request.form['three1'])
-        test5 = pythonfunctions.myAppend(test4, request.form['four1'])
-        test6 = pythonfunctions.myAppend(test5, request.form['five1']) # this list will be passed as a string accross the wire, the elements will also be string because request.form passes data over the wire
-        result = pythonfunctions.compEx5(output, test6) #we can't return this dictionary because the keys are tuples
-        testresult = pythonfunctions.dictHelper(str(result))
-        newresult = pythonfunctions.specialSauce1(testresult)
+# @app.route("/banana4", methods=['GET', 'POST'])
+# def fruit5():
+#     if request.method =='POST':
+#         output = request.form['text']
+#         test1 = request.form['one1']
+#         test2 = pythonfunctions.myAppend([],test1)
+#         test3 = pythonfunctions.myAppend(test2, request.form['two1'])
+#         test4 = pythonfunctions.myAppend(test3, request.form['three1'])
+#         test5 = pythonfunctions.myAppend(test4, request.form['four1'])
+#         test6 = pythonfunctions.myAppend(test5, request.form['five1']) # this list will be passed as a string accross the wire, the elements will also be string because request.form passes data over the wire
+#         result = pythonfunctions.compEx5(output, test6) #we can't return this dictionary because the keys are tuples
+#         testresult = pythonfunctions.dictHelper(str(result))
+#         newresult = pythonfunctions.specialSauce1(testresult)
 
-        test = "data: [" + str(result) + "]"
+#         test = "data: [" + str(result) + "]"
 
         # result = pythonfunctions.compEx3(output, inlist)
         # return jsonify(newresult)
         # return str(testresult)
-        return jsonify(newresult)
-    return "This didn't work"
+    #     return jsonify(newresult)
+    # return "This didn't work"
 
-@app.route("/banana5", methods=['GET', 'POST'])
-def fruit6():
-    return render_template('twoInput2.html', title='Home')
+# @app.route("/banana5", methods=['GET', 'POST'])
+# def fruit6():
+#     return render_template('twoInput2.html', title='Home')
 
-@app.route("/banana6", methods=['GET', 'POST'])
-def fruit7():
-    return render_template('muddBat.json', title='Home')
+# @app.route("/banana6", methods=['GET', 'POST'])
+# def fruit7():
+#     return render_template('muddBat.json', title='Home')
 
-@app.route("/banana7", methods=['GET', 'POST'])
-def fruit8():
-    return render_template('twoInput4.html', title='Home')
+# @app.route("/banana7", methods=['GET', 'POST'])
+# def fruit8():
+#     return render_template('twoInput4.html', title='Home')
 
+#page that holds the data that contains the json data that we use for the displaying certain parts on the template
 @app.route("/banana8", methods=['GET', 'POST'])
 def fruit9():
     # if request.method == 'POST':
     #     o = request.form['input1']
     #     return render_template('muddBat1.json' + 'o')
-    return render_template('muddBat2.json', title='Home')
+    return render_template('muddBatt2.json', title='Home')
 
 #page that holds the json data sent to the back end
 @app.route("/banana9", methods=['GET', 'POST'])
@@ -434,20 +436,19 @@ fruit10()"""
 
     return "This didn't post"
 #address for muddBat6
-@app.route("/banana10", methods=['GET', 'POST']) #work on fixing the action buttons on index
-def fruit11():
-    if request.method == 'POST':
-        data = request.form['data']
-        htmlData = BeautifulSoup(data)
-        print("the Data is: ", data)
-        print("the html data is: ", htmlData.get_text())
+# @app.route("/banana10", methods=['GET', 'POST']) #work on fixing the action buttons on index
+# def fruit11():
+#     if request.method == 'POST':
+#         data = request.form['data']
+#         htmlData = BeautifulSoup(data)
+#         print("the Data is: ", data)
+#         print("the html data is: ", htmlData.get_text())
         
-        # return htmlData.get_text()
-        return data
+#         return data
 
-    return "This didn't work"
+#     return "This didn't work"
 
-#page to create your own problem
+#page to create your own problem; Not made yet!
 @app.route("/banana11", methods=['GET', 'POST']) #work on fixing the action buttons on index
 def fruit12():
     if request.method == 'POST':
@@ -456,52 +457,52 @@ def fruit12():
 
     
 
-@app.route("/jacoby", methods=['GET','POST'])
-def jl():
-    # if request == 'POST':
-    #     xValue = request.form('xValue')
-    #     yValue = request.form('yValue')
-    #     output = pythonfunctions.jsAndFetchEx(xValue,yValue)
-    #     return output
-    # dog = request.args
-    # cat = dog['test1']
-    # mouse = dog['test2']
-    # return mouse + cat
+# @app.route("/jacoby", methods=['GET','POST'])
+# def jl():
+#     # if request == 'POST':
+#     #     xValue = request.form('xValue')
+#     #     yValue = request.form('yValue')
+#     #     output = pythonfunctions.jsAndFetchEx(xValue,yValue)
+#     #     return output
+#     # dog = request.args
+#     # cat = dog['test1']
+#     # mouse = dog['test2']
+#     # return mouse + cat
     
 
-    # d = { "king": 42, "jacoby": 9001}
-    d = request.args
-    result_of_d_of_a = d['a']
-    result_of_d_of_b = d['b']
-    return str( result_of_d_of_a + "Hi Jacoby!" + result_of_d_of_b )
+#     # d = { "king": 42, "jacoby": 9001}
+#     d = request.args
+#     result_of_d_of_a = d['a']
+#     result_of_d_of_b = d['b']
+#     return str( result_of_d_of_a + "Hi Jacoby!" + result_of_d_of_b )
    
 
 
 # Substitutions page, when we click submit, it substitutes!
-@app.route('/subs',methods=['GET','POST'])
-def subs():
-    if request.method == 'POST':
-        # larger textarea
-        old_textarea = request.form['textarea_input']
-        # old words and new words (their replacements)
-        old_word1 = request.form['original_text1']
-        old_word2 = request.form['original_text2']
-        old_word3 = request.form['original_text3']
-        new_word1 = request.form['replacement_text1']
-        new_word2 = request.form['replacement_text2']
-        new_word3 = request.form['replacement_text3']
-        # create a dictionary of substitutions
-        substitutions = {}
-        substitutions[old_word1] = new_word1
-        substitutions[old_word2] = new_word2
-        substitutions[old_word3] = new_word3
-        # do the transformation in Python
-        new_text = pythonfunctions.substitute(old_textarea, substitutions)
-        return render_template('subsResults.html', 
-                                old_text=old_textarea, 
-                                new_text=new_text)
-    else:
-        return render_template('subs.html', title='Home')
+# @app.route('/subs',methods=['GET','POST'])
+# def subs():
+#     if request.method == 'POST':
+#         # larger textarea
+#         old_textarea = request.form['textarea_input']
+#         # old words and new words (their replacements)
+#         old_word1 = request.form['original_text1']
+#         old_word2 = request.form['original_text2']
+#         old_word3 = request.form['original_text3']
+#         new_word1 = request.form['replacement_text1']
+#         new_word2 = request.form['replacement_text2']
+#         new_word3 = request.form['replacement_text3']
+#         # create a dictionary of substitutions
+#         substitutions = {}
+#         substitutions[old_word1] = new_word1
+#         substitutions[old_word2] = new_word2
+#         substitutions[old_word3] = new_word3
+#         # do the transformation in Python
+#         new_text = pythonfunctions.substitute(old_textarea, substitutions)
+#         return render_template('subsResults.html', 
+#                                 old_text=old_textarea, 
+#                                 new_text=new_text)
+#     else:
+#         return render_template('subs.html', title='Home')
 
 # Used for uploading pictures
 @app.route('/<filename>')

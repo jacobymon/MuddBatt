@@ -1,8 +1,5 @@
 # Starting code for our Flask web application
 
-#
-# Name(s):
-#
 
 from curses.ascii import isdigit
 from email.mime import base
@@ -35,245 +32,245 @@ def fn(s):
         return exc
 
 
-def substitute(old_text, dictionary_of_substitutions):
-    """ our substitution engine:
+# def substitute(old_text, dictionary_of_substitutions):
+    # """ our substitution engine:
 
-        old_text: the body of text in which to make substitutions
+    #     old_text: the body of text in which to make substitutions
 
-        dictionary_of_substitutions:
-          a Python dictionary with
-            keys ~ the strings to replace (get rid of)
-            values ~ the strings to replace the keys with! 
+    #     dictionary_of_substitutions:
+    #       a Python dictionary with
+    #         keys ~ the strings to replace (get rid of)
+    #         values ~ the strings to replace the keys with! 
 
-        return value, nex_text: the new text, with substitutions made!
+    #     return value, nex_text: the new text, with substitutions made!
 
-        This is the function to change, to create xkcd-type substitutions!
-    """
-    print(f"Not yet using the dictionary_of_substitutions: {dictionary_of_substitutions}")
+    #     This is the function to change, to create xkcd-type substitutions!
+    # """
+    # print(f"Not yet using the dictionary_of_substitutions: {dictionary_of_substitutions}")
 
-    # right now, we replace every letter 'e' with the letter 'E'
-    string_to_replace = 'e'
-    replacement = 'E'
+    # # right now, we replace every letter 'e' with the letter 'E'
+    # string_to_replace = 'e'
+    # replacement = 'E'
 
-    # use re.sub
-    new_text = re.sub( string_to_replace, replacement, old_text )
+    # # use re.sub
+    # new_text = re.sub( string_to_replace, replacement, old_text )
     
-    # return the result
-    return new_text
+    # # return the result
+    # return new_text
 
 
 
-def seconds_since_1970(input=''):
-    """ returns a json structure with two key-value pairs:
-            'seconds': <the floating-point # of seconds since 1/1/1970>
-            'origin': '1/1/1970'
+# def seconds_since_1970(input=''):
+#     """ returns a json structure with two key-value pairs:
+#             'seconds': <the floating-point # of seconds since 1/1/1970>
+#             'origin': '1/1/1970'
 
-        the input isn't used, but could be in the future
-    """
-    elapsed_seconds = time.time()  # built-in, counts seconds since 1970
+#         the input isn't used, but could be in the future
+#     """
+#     elapsed_seconds = time.time()  # built-in, counts seconds since 1970
 
-    d = { 'seconds': elapsed_seconds, 
-          'origin' : '1/1/1970' }
+#     d = { 'seconds': elapsed_seconds, 
+#           'origin' : '1/1/1970' }
 
-    string_version = json.dumps(d)  # using the json library to "dump" a string
+#     string_version = json.dumps(d)  # using the json library to "dump" a string
 
-    return string_version
+#     return string_version
 
-    # then, try grabbing this json data -- using requests!
+#     # then, try grabbing this json data -- using requests!
 
     
 
 
 # Function takes in a string, and returns on which has been 
 # translated into pig latin
-def pig_translate(S):
-    """ pig latin converter from '19 (with thanks to Justin G.!) """
-    retStr = ''
-    V = ['a','A','e','E','i','I','o','O','u','U']
-    currFront = S[0]
-    seen_vowel = False
-    for i in range(len(S)):
-        if S[i] == ' ':
-            if currFront in V:
-                retStr += 'by '
-            else:
-                retStr += currFront.lower() + 'by '
-        elif i == len(S)-1:
-            if currFront in V:
-                retStr += S[i]+ 'by'
-            else:
-                retStr += S[i] + currFront.lower() + 'ay'
-        else:
-            if S[i-1] == ' ' or i == 0:
-                seen_vowel = False
-                currFront = S[i]
-                if currFront in V:
-                    retStr += S[i]
-                    seen_vowel = True
-            else:
-                if S[i] in V:
-                    seen_vowel = True
-                    retStr += S[i]
-                else:
-                    if not seen_vowel:
-                        currFront += S[i]
-                    else:
-                        retStr += S[i]
-    return retStr
+# def pig_translate(S):
+#     """ pig latin converter from '19 (with thanks to Justin G.!) """
+#     retStr = ''
+#     V = ['a','A','e','E','i','I','o','O','u','U']
+#     currFront = S[0]
+#     seen_vowel = False
+#     for i in range(len(S)):
+#         if S[i] == ' ':
+#             if currFront in V:
+#                 retStr += 'by '
+#             else:
+#                 retStr += currFront.lower() + 'by '
+#         elif i == len(S)-1:
+#             if currFront in V:
+#                 retStr += S[i]+ 'by'
+#             else:
+#                 retStr += S[i] + currFront.lower() + 'ay'
+#         else:
+#             if S[i-1] == ' ' or i == 0:
+#                 seen_vowel = False
+#                 currFront = S[i]
+#                 if currFront in V:
+#                     retStr += S[i]
+#                     seen_vowel = True
+#             else:
+#                 if S[i] in V:
+#                     seen_vowel = True
+#                     retStr += S[i]
+#                 else:
+#                     if not seen_vowel:
+#                         currFront += S[i]
+#                     else:
+#                         retStr += S[i]
+#     return retStr
 
-def determinant(one_one, one_two, two_one, two_two):
-    """returns the determinant of a 2x2 matrix"""
-    det = ((int(one_one)*int(two_two)) - (int(one_two)*int(two_one)))
-    return det
+# def determinant(one_one, one_two, two_one, two_two):
+#     """returns the determinant of a 2x2 matrix"""
+#     det = ((int(one_one)*int(two_two)) - (int(one_two)*int(two_one)))
+#     return det
 
-def numToBaseB(N, B):
-    """takes a non negative interger 'N' (in base 10) and a base 'B' and returns
-    that number in base B"""
-    if N == 0:
-        return ''
-    else:
-        return   numToBaseB(N//B, B) + str(N%B)
+# def numToBaseB(N, B):
+#     """takes a non negative interger 'N' (in base 10) and a base 'B' and returns
+#     that number in base B"""
+#     if N == 0:
+#         return ''
+#     else:
+#         return   numToBaseB(N//B, B) + str(N%B)
 
-def numToBin(N):
-    """takes in an int in base 10 and turns it into the complete 8 bit binary version"""
-    if N == 0:
-        return ''
-    a = numToBaseB(N//2, 2) + str(N%2)
-    while len(a) != 8:
-        if len(a) > 8:
-            return "Error: the length of the base 10 int in binary is longer than 8."
-        b = str(0) + a
-        a = b
-    return a
+# def numToBin(N):
+#     """takes in an int in base 10 and turns it into the complete 8 bit binary version"""
+#     if N == 0:
+#         return ''
+#     a = numToBaseB(N//2, 2) + str(N%2)
+#     while len(a) != 8:
+#         if len(a) > 8:
+#             return "Error: the length of the base 10 int in binary is longer than 8."
+#         b = str(0) + a
+#         a = b
+#     return a
 
-def baseBToNum(S, B):
-    """accepts a string 'S' and a base 'B'. 's'
-    is a number in base 'B' where B is between 2
-    and 10 inclusive."""
-    if S == '':
-        return 0
+# def baseBToNum(S, B):
+#     """accepts a string 'S' and a base 'B'. 's'
+#     is a number in base 'B' where B is between 2
+#     and 10 inclusive."""
+#     if S == '':
+#         return 0
 
-    # if the last digit is a '1'...
-    elif S[-1] ==  '1':
-        return   B*baseBToNum(S[:-1], B) + int(S[-1])
+#     # if the last digit is a '1'...
+#     elif S[-1] ==  '1':
+#         return   B*baseBToNum(S[:-1], B) + int(S[-1])
 
-    else: # last digit must be '0'
-        return  B*baseBToNum(S[:-1], B) + 0
+#     else: # last digit must be '0'
+#         return  B*baseBToNum(S[:-1], B) + 0
 
-def baseToBase(B1, B2, s_in_B1):
-    """takes a number in 's_in_B1' which is in B1 and 
-    converts it into base B2"""
-    t = baseBToNum(s_in_B1, B1)
-    return numToBaseB(t, B2)
-
-
-
-def stringToInt(text):
-    """official String to unique int function. Takes in a string and outputs a unique integer in decimal form"""
-    list = []
-    for i in (text):
-        b = (ord(i)) # gets the corresponding ascii value of the ith character in the given string and turns the value into a string
-        c = numToBin(b) # turns the given number in base 10 to base 2 in full 8 bit form. Only works when the binary length is <8
-        list.append(str(c))
-    king =("".join(list))
-    cole = baseToBase(2,10,king)
-    return cole
-    # nico= bin(int(king))[2:]
-    # while len(nico)%8 != 0:
-    #     delly = str(0) + nico
-    #     nico = delly
-    # print (nico)
-    #return king
-    #nico = bin(king)[2:]
-
-    # list1 = []
-    # for x in nico:
-    #     e = baseToBase(2,10,x)
-    #     list1.append(e)
-    # return "".join(list1)# I wanted to return a literal int, but when I cast it to an int, python takes off the leading 
-    # #          #zeroes and I need these to make a unique integer.
+# def baseToBase(B1, B2, s_in_B1):
+#     """takes a number in 's_in_B1' which is in B1 and 
+#     converts it into base B2"""
+#     t = baseBToNum(s_in_B1, B1)
+#     return numToBaseB(t, B2)
 
 
-    # d = "".join(list)
-    # return d 
 
-def intToString(s):
-    """this was a prototype for converting an int to a string but doesn't do as well becuase it only works for 
-    binary string whose length is divisible by 8 evenly"""
-    """input is a binary string that must be divisible by 8"""
-    if len(s)%8 != 0: # checks to see if the legth of the given binary int is evenly divisible by 8
-                    #It neeeds to be divisible by 8 because ascii memory is used in 8 bits, when including
-                    #the leading zeros. We need it to be divisible by 8 because we can't guess where to put the zeros
-        return "Error, the length of the binary integer must be divisible by 8"
-    else:    
-        list= []
-        n = 8 #the number that will decide the grouping of ints in the list
-        for i in range(0, len(s), n):
-            list.append(s[i: i + n]) #createse a list of 8 but segments of the given string
-        list1= [] # new list that will store the converted character
-        for x in list: #loop through the list and convert each element to decimal, and perform chr() to get the ascii character
-            c = int(baseToBase(2,10,x))
-            d = chr(c)
-            list1.append(d)
-    return "".join(list1) #joins everything in the list into one string.
+# def stringToInt(text):
+#     """official String to unique int function. Takes in a string and outputs a unique integer in decimal form"""
+#     list = []
+#     for i in (text):
+#         b = (ord(i)) # gets the corresponding ascii value of the ith character in the given string and turns the value into a string
+#         c = numToBin(b) # turns the given number in base 10 to base 2 in full 8 bit form. Only works when the binary length is <8
+#         list.append(str(c))
+#     king =("".join(list))
+#     cole = baseToBase(2,10,king)
+#     return cole
+#     # nico= bin(int(king))[2:]
+#     # while len(nico)%8 != 0:
+#     #     delly = str(0) + nico
+#     #     nico = delly
+#     # print (nico)
+#     #return king
+#     #nico = bin(king)[2:]
 
-def decimalInput(In):
-    """this was the old decimal input function, it doesn't work as well becuase it only accepts decimal numbers
-    that are evenly divisible by 3 unless the length of the string of numbers is less than 3"""
-    if len(In) < 3 and len(In)%3 != 0:
-        while len(In) != 3:
-           e = str(0) + In
-           In = e
-        return chr(int(e))
-    elif len(In)%3 == 0:
-        list=[]
-        n=3
-        for i in range(0, len(str(In)), n):
-            list.append(In[i: i + n])
-        list1=[]
-        for x in list:
-            d = chr(int(x))
-            list1.append(d)
-        return "".join(list1)
-    else:
-            return "Error, the length of the decimal integer must be evenly divisible by 3 (unless it contains less than three character)"
+#     # list1 = []
+#     # for x in nico:
+#     #     e = baseToBase(2,10,x)
+#     #     list1.append(e)
+#     # return "".join(list1)# I wanted to return a literal int, but when I cast it to an int, python takes off the leading 
+#     # #          #zeroes and I need these to make a unique integer.
 
-#just another base converter
-DIGITS = '0123456789abcdef'        
-def convert_to_base(decimal_number, base):
-    remainder_stack = []
 
-    while decimal_number > 0:
-        remainder = decimal_number % base
-        remainder_stack.append(remainder)
-        decimal_number = decimal_number // base
+#     # d = "".join(list)
+#     # return d 
 
-    new_digits = []
-    while remainder_stack:
-        new_digits.append(DIGITS[remainder_stack.pop()])
+# def intToString(s):
+#     """this was a prototype for converting an int to a string but doesn't do as well becuase it only works for 
+#     binary string whose length is divisible by 8 evenly"""
+#     """input is a binary string that must be divisible by 8"""
+#     if len(s)%8 != 0: # checks to see if the legth of the given binary int is evenly divisible by 8
+#                     #It neeeds to be divisible by 8 because ascii memory is used in 8 bits, when including
+#                     #the leading zeros. We need it to be divisible by 8 because we can't guess where to put the zeros
+#         return "Error, the length of the binary integer must be divisible by 8"
+#     else:    
+#         list= []
+#         n = 8 #the number that will decide the grouping of ints in the list
+#         for i in range(0, len(s), n):
+#             list.append(s[i: i + n]) #createse a list of 8 but segments of the given string
+#         list1= [] # new list that will store the converted character
+#         for x in list: #loop through the list and convert each element to decimal, and perform chr() to get the ascii character
+#             c = int(baseToBase(2,10,x))
+#             d = chr(c)
+#             list1.append(d)
+#     return "".join(list1) #joins everything in the list into one string.
 
-    return ''.join(new_digits)
+# def decimalInput(In):
+#     """this was the old decimal input function, it doesn't work as well becuase it only accepts decimal numbers
+#     that are evenly divisible by 3 unless the length of the string of numbers is less than 3"""
+#     if len(In) < 3 and len(In)%3 != 0:
+#         while len(In) != 3:
+#            e = str(0) + In
+#            In = e
+#         return chr(int(e))
+#     elif len(In)%3 == 0:
+#         list=[]
+#         n=3
+#         for i in range(0, len(str(In)), n):
+#             list.append(In[i: i + n])
+#         list1=[]
+#         for x in list:
+#             d = chr(int(x))
+#             list1.append(d)
+#         return "".join(list1)
+#     else:
+#             return "Error, the length of the decimal integer must be evenly divisible by 3 (unless it contains less than three character)"
+
+# #just another base converter
+# DIGITS = '0123456789abcdef'        
+# def convert_to_base(decimal_number, base):
+#     remainder_stack = []
+
+#     while decimal_number > 0:
+#         remainder = decimal_number % base
+#         remainder_stack.append(remainder)
+#         decimal_number = decimal_number // base
+
+#     new_digits = []
+#     while remainder_stack:
+#         new_digits.append(DIGITS[remainder_stack.pop()])
+
+#     return ''.join(new_digits)
     
 
-def newDeciInput(N):
-    """the final product!!!"""
-    """Takes in a decimal input, outputs a unique program"""
-    a = bin(int(N))[2:] #converts N to the binary version, and slices off the first two character's since they're irrellevent
-    while (len(a)%8 != 0): #append 0's to the front if the length is not evenly divisible by 8
-        b = str(0) + a
-        a = b
-    list= []
-    n = 8 #the number that will decide the grouping of ints in the list
-    print(a)
-    for i in range(0, len(a), n):
-        list.append(a[i: i + n]) #createse a list of 8 but segments of the given string
-    list1= [] # new list that will store the converted character
-    for x in list: #loop through the list and convert each element to decimal, and perform chr() to get the ascii character
-        c = baseToBase(2,10,x)
-        d = chr(int(c))
-        list1.append(d)
-    h = "".join(list1) 
-    return h #joins everything in the list into one string.
+# def newDeciInput(N):
+#     """the final product!!!"""
+#     """Takes in a decimal input, outputs a unique program"""
+#     a = bin(int(N))[2:] #converts N to the binary version, and slices off the first two character's since they're irrellevent
+#     while (len(a)%8 != 0): #append 0's to the front if the length is not evenly divisible by 8
+#         b = str(0) + a
+#         a = b
+#     list= []
+#     n = 8 #the number that will decide the grouping of ints in the list
+#     print(a)
+#     for i in range(0, len(a), n):
+#         list.append(a[i: i + n]) #createse a list of 8 but segments of the given string
+#     list1= [] # new list that will store the converted character
+#     for x in list: #loop through the list and convert each element to decimal, and perform chr() to get the ascii character
+#         c = baseToBase(2,10,x)
+#         d = chr(int(c))
+#         list1.append(d)
+#     h = "".join(list1) 
+#     return h #joins everything in the list into one string.
 
 def jsAndFetchEx(xValue,yValue):
     number =  int(xValue) + int(yValue)
